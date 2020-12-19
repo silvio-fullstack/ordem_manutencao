@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br" >
+
+<head>
+  <title>Sistema de Gestão</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/nav_sidebar.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/changelists.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">
+  <script src="/admin/jsi18n/"></script>
+  <script src="{% static 'js/vendor/jquery/jquery.js' %}"></script>
+  <script src="{% static 'js/jquery.init.js' %}"></script>
+  <script src="{% static 'js/core.js' %}"></script>
+  <script src="{% static 'js/admin/RelatedObjectLookups.js' %}"></script>
+  <script src="{% static 'js/actions.js' %}"></script>
+  <script src="{% static 'js/urlify.js' %}"></script>
+  <script src="{% static 'js/prepopulate.js' %}"></script>
+  <script src="{% static 'js/vendor/xregexp/xregexp.js' %}"></script>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+  <meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+<body class=" app-core model-manutencao change-list" data-admin-utc-offset="-10800">   
+  <!-- Container -->
+  <div id="container">
+    <!-- Header -->
+    <div id="header">
+      <div id="branding">
+        <h1 id="site-name">
+          <a href="/admin/">Gestão de Manutenção</a>
+        </h1>
+      </div>
+      <div id="user-tools">
+        Bem-vindo(a),
+        <strong>silvio</strong>.
+        <a href="/">Ver o site</a> /
+        <a href="/admin/password_change/">Alterar senha</a> /
+        <a href="/admin/logout/">Encerrar sessão</a>
+      </div>
+    </div>
+    <!-- END Header -->
+
+    <div class="breadcrumbs">
+      {% block breadcrumbs %}
+
+      {% endblock %}
+    </div>
+
+    <!-- Até aqui e quase tudo igual --> 
+    {% block main %}
+
+    {% endblock %}
+    
+
+    <!-- Até aqui está igual -->
+  </div>
+  <!-- END Container -->
+</body>
+</html>

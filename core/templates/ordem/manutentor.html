@@ -1,0 +1,80 @@
+{% extends 'ordem/base.html' %}
+
+{% block breadcrumbs %}
+    <a href="#">Início</a>
+    &rsaquo; Manutentor
+{% endblock %}
+
+{% block main %}
+<div class="main shifted" id="main">
+    <div class="content">
+      <!-- Content -->
+      <div id="content" class="flex">
+        <p>Selecione um manutentor para modificar</p>
+        <div id="content-main">
+          <ul class="object-tools">
+            <li>
+              <a href="{% url 'manutencao_add' %}" class="addlink">
+                Adicionar manutentor
+              </a>
+            </li>
+          </ul>
+          <div class="module" id="changelist">
+            <div class="changelist-form-container">
+              <form id="changelist-form" method="post" novalidate>
+                <input type="hidden" name="csrfmiddlewaretoken" value="Wd5YwtJ6aVYN5wzg6rlYY6ENxT4NAAFDbPQuXvXpiBxzNToY3Ts05oGTj3GvKN9X">
+                <div class="container">
+                  <table id="result_list">
+                    <thead>
+                      <tr>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Manutentor</span></div>
+                        </th>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Criado em</span></div>
+                        </th>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Modificado em</span></div>
+                        </th>
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {% for dados in dados %}
+                      <tr>
+                          <th class="">
+                            <a href="{% url 'manutentor_update' dados.id %}">{{ dados.Nome }}</a>
+                          </th>
+                          <th class="">
+                            <a>{{ dados.create }}</a>
+                          </th>
+                          <th class="">
+                            <a>{{ dados.update }}</a>
+                          </th>
+
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  <p class="paginator">
+                    {% if dados.count == 1 %}
+                    <span>{{ dados.count }} > Manutentor</span>
+                    {% else %}
+                      <span>{{ dados.count }} > Manutentores</span>
+                    {% endif %}
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <br class="clear">
+        </div>
+          <!-- END Content -->
+          <div id="footer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

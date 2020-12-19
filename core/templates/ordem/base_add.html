@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br" >
+<head>
+<title>Adicionar manutencao | Site de administração do Django</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+
+  <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css">
+  <script src="/static/admin/js/nav_sidebar.js" defer></script>
+
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script src="/admin/jsi18n/"></script>
+<script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script src="/static/admin/js/jquery.init.js"></script>
+<script src="/static/admin/js/core.js"></script>
+<script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script src="/static/admin/js/actions.js"></script>
+<script src="/static/admin/js/urlify.js"></script>
+<script src="/static/admin/js/prepopulate.js"></script>
+<script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-core model-manutencao change-form"
+  data-admin-utc-offset="-10800">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/admin/">Administração do Django</a></h1>
+
+        </div>
+        
+        
+        <div id="user-tools">
+            
+                Bem-vindo(a),
+                <strong>silvio</strong>.
+            
+            
+                
+                    <a href="/">Ver o site</a> /
+                
+                
+                    
+                    
+                
+                
+                <a href="/admin/password_change/">Alterar senha</a> /
+                
+                <a href="/admin/logout/">Encerrar sessão</a>
+            
+        </div>
+        
+        
+        
+    </div>
+    <!-- END Header -->
+    
+<div class="breadcrumbs">
+<a href="/admin/">Início</a>
+&rsaquo; <a href="/admin/core/">Core</a>
+&rsaquo; <a href="/admin/core/manutencao/">Manutencaos</a>
+&rsaquo; Adicionar manutencao
+</div>
+
+    
+
+    <div class="main shifted" id="main">
+      
+        
+          
+<button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="Alternar navegação"></button>
+<nav class="sticky" id="nav-sidebar">
+  
+
+
+  
+    <div class="app-auth module">
+      <table>
+        <caption>
+          <a href="/admin/auth/" class="section" title="Modelos na aplicação Autenticação e Autorização">Autenticação e Autorização</a>
+        </caption>
+        
+          <tr class="model-group">
+            
+              <th scope="row"><a href="/admin/auth/group/">Grupos</a></th>
+            
+
+            
+              <td><a href="/admin/auth/group/add/" class="addlink">Adicionar</a></td>
+            
+
+            
+          </tr>
+        
+          <tr class="model-user">
+            
+              <th scope="row"><a href="/admin/auth/user/">Usuários</a></th>
+            
+
+            
+              <td><a href="/admin/auth/user/add/" class="addlink">Adicionar</a></td>
+            
+
+            
+          </tr>
+        
+      </table>
+    </div>
+  
+    <div class="app-core module current-app">
+      <table>
+        <caption>
+          <a href="/admin/core/" class="section" title="Modelos na aplicação Core">Core</a>
+        </caption>
+        
+          <tr class="model-manutencao current-model">
+            
+              <th scope="row"><a href="/admin/core/manutencao/" aria-current="page">Manutencaos</a></th>
+            
+
+            
+              <td><a href="/admin/core/manutencao/add/" class="addlink">Adicionar</a></td>
+            
+
+            
+          </tr>
+        
+      </table>
+    </div>
+  
+
+
+</nav>
+
+        
+      
+      <div class="content">
+        
+          
+        
+        <!-- Content -->
+        <div id="content" class="colM">
+          
+          <h1>Adicionar manutencao</h1>
+          <div id="content-main">
+
+
+
+<form method="post" id="manutencao_form" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="0Gu2hdBqkQL9ThFboArJ6QrSXPsfLDnTOKNgcaqiHLCPxjB2PfPOi9Ir04p6gEuO">
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+    
+    
+    
+        <div class="form-row field-Nome">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_Nome">Nome do Manutentor:</label>
+                        
+                            <input type="text" name="Nome" class="vTextField" maxlength="50" required id="id_Nome">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-funcao">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_funcao">Função do Manutentor:</label>
+                        
+                            <select name="funcao" id="id_funcao">
+  <option value="eletric" selected>Eletricista</option>
+
+  <option value="macanic">Mecânico</option>
+
+  <option value="lub">Lubrificador</option>
+
+  <option value="aut">Automação</option>
+
+  <option value="refri">Refrigeração</option>
+
+  <option value="aux_eletric">Auxiliar Eletricista</option>
+
+  <option value="aux_mecanic">Auxiliar Mecânico</option>
+
+  <option value="aux_refri">Auxiliar Refrigeração</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+
+<input type="submit" value="Salvar" class="default" name="_save">
+
+
+<input type="submit" value="Salvar e adicionar outro(a)" name="_addanother">
+<input type="submit" value="Salvar e continuar editando" name="_continue">
+
+
+</div>
+
+
+
+    <script id="django-admin-form-add-constants"
+            src="/static/admin/js/change_form.js"
+            
+                data-model-name="manutencao"
+            
+            async>
+    </script>
+
+
+
+
+<script id="django-admin-prepopulated-fields-constants"
+        src="/static/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+          
+          <br class="clear">
+        </div>
+        <!-- END Content -->
+        <div id="footer"></div>
+      </div>
+    </div>
+</div>
+<!-- END Container -->
+</body>
+</html>

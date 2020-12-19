@@ -1,0 +1,41 @@
+{% extends 'ordem/base.html' %}
+
+{% block breadcrumbs %}
+    <a href="#">Início</a>
+    &rsaquo; 
+    <a href="{% url 'manutencao' %}">Equipamento</a>
+    &rsaquo; Deletar
+{% endblock %}
+
+{% block main %} 
+      <div class="content">
+        
+          
+        
+        <!-- Content -->
+        <div id="content" class="colM">
+          
+          <h1>Tem certeza?</h1>
+          
+
+    <p>Você tem certeza que quer remover o equipamento {{ dados.Nome }}? Todos os itens relacionados serão removidos:</p>
+    
+
+    <h2>Objetos</h2>
+    <ul>	<li>Equipamento: <a href="{% url 'equipamento_update' dados.id %}">{{ dados.Nome }}</a></li>
+	</ul>
+    <form method="post"><input type="hidden" name="csrfmiddlewaretoken" value="zuoaZPltE7s2fz9VAFJvE2mX9CcgqdtOQXcdtdgeFZ94WlabcJhJAt4bGQ85uRjE">
+    <div>
+    <input type="hidden" name="post" value="yes">
+    
+    
+    <input type="submit" value="Sim, eu tenho certeza">
+    <a href="{% url 'equipamento' %}" class="button cancel-link">Não, me leve de volta</a>
+    </div>
+    </form>
+
+
+          
+          <br class="clear">
+        </div>
+        {% endblock %}

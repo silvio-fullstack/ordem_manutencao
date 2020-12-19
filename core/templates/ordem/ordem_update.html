@@ -1,0 +1,45 @@
+{% extends 'ordem/base.html' %}
+
+{% block breadcrumbs %}
+    <a href="#">Início</a>
+    &rsaquo; 
+    <a href="{% url 'ordem' %}">Ordem</a>
+    &rsaquo; Atualizar
+{% endblock %}
+
+{% block main %}
+<div class="content">
+    <div id="content" class="colM">
+      <spam>Atualizar Equipamento {{ dados.Nome }}</spam>
+      <div id="content-main">
+        <form method="post" id="manutencao_form" novalidate>
+          <fieldset class="module aligned ">
+            <!-- Aqui OHHH -->
+            {{ form.as_p }}
+            <!-- Até Aqui -->
+          </fieldset>
+          <input type="hidden" name="csrfmiddlewaretoken" value="N3nCes0NlLK5Xu262mnto6uvYoD8ODoP4wbFIQVymDr7Eg3mEqVHkxcJvCzXSheF">
+          <div>
+            <div class="submit-row">
+              <p class="deletelink-box">
+                <a href="{% url 'ordem_delete' dados.id %}" class="deletelink">Apagar</a>
+              </p>
+              <input type="submit" value="Salvar" class="default" name="_save">
+            </div>
+            <script id="django-admin-form-add-constants"
+              src="/static/admin/js/change_form.js"
+              data-model-name="manutencao"
+              async>
+            </script>
+            <script id="django-admin-prepopulated-fields-constants"
+              src="/static/admin/js/prepopulate_init.js"
+              data-prepopulated-fields="[]">
+            </script>
+          </div>
+        </form>
+      </div>
+      <br class="clear">
+    </div>
+  </div>
+  
+{% endblock %}
