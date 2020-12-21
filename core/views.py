@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Manutencao, Equipamentos, Ordem, Almoxarifado
-from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm, OrdemConsultarForm, AlmoxarifadoForm
+from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm, OrdemConsultarForm, AlmoxarifadoForm, AbrirOrdemForm
 from datetime import datetime
 
 
@@ -248,3 +248,8 @@ def almoxarifado_delete(request, id):
         return redirect('almoxarifado')
     else:
         return render(request, 'ordem/almoxarifado_delete.html', {'dados': dados})
+
+
+def adicionar_peca(request):
+    form = AlmoxarifadoForm(request.POST)
+    return render(request, 'ordem/adicionar_peca.html', {'form': form})

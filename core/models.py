@@ -87,7 +87,7 @@ class Ordem(models.Model):
         ('Melhoria', 'Serviço de Melhoria'),
     ]
 
-    Modificado = models.DateTimeField(auto_now=True)
+    Modificado = models.DateTimeField(auto_now_add=True)
     Solicitante = models.CharField(max_length=50, help_text='Solicitante da Ordem')
     Equipamento = models.ForeignKey(Equipamentos, on_delete=models.CASCADE)
     Tipo_Servico = models.CharField(
@@ -116,5 +116,4 @@ class Ordem(models.Model):
     Abertura_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Inicio_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Termino_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
-
-
+    Pecas = models.ManyToManyField(Almoxarifado, null=True, blank=True)

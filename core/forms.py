@@ -53,3 +53,4 @@ class AlmoxarifadoForm(ModelForm):
     class Meta:
         model = Almoxarifado
         fields = '__all__'
+

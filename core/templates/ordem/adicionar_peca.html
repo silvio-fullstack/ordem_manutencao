@@ -4,26 +4,24 @@
     <a href="#">Início</a>
     &rsaquo; 
     <a href="{% url 'ordem' %}">Ordem</a>
-    &rsaquo; Fechar
+    &rsaquo; 
+    <a href="{% url 'ordem' %}">Fechar Ordem</a>
+    &rsaquo; Adicionar Peças
 {% endblock %}
 
 {% block main %}
 
 <div class="content">
   <div id="content" class="colM">
-    <span>Fechar Ordem de Serviço</span>
-    </br>
-    </br>
+    <span>Adicionar Peças</span>
     <div id="content-main">
       <form method="post" id="manutencao_form" novalidate>
         <fieldset class="module aligned ">
           <!-- Aqui OHHH -->
           {{ form.as_p }}
           <!-- Até Aqui -->
-          
         </fieldset>
         {% csrf_token %}
-        
         <div>
           <div class="submit-row">
             <input type="submit" value="Salvar" class="default" name="_save">
