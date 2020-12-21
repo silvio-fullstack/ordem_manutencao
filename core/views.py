@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Manutencao, Equipamentos, Ordem
-from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm
+from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm, OrdemConsultarForm
 
 
 # --- VIEWS DOS MANUTENTORES ------------------------
@@ -177,3 +177,13 @@ def ordem_delete(request, id):
         return redirect('ordem')
     else:
         return render(request, 'ordem/ordem_delete.html', {'dados': dados})
+
+def ordem_consultar(request, id):
+    dados = Ordem.objects.get(id=id)
+    form = OrdemConsultarForm(request.POST or None, instance=dados)
+    context = {
+        'dados': dados,
+        'form': form,
+    }
+
+    return render(request, 'ordem/ordem_consultar.html', context)

@@ -22,7 +22,7 @@
           <div class="module" id="changelist">
             <div class="changelist-form-container">
               <form id="changelist-form" method="post" novalidate>
-                <input type="hidden" name="csrfmiddlewaretoken" value="Wd5YwtJ6aVYN5wzg6rlYY6ENxT4NAAFDbPQuXvXpiBxzNToY3Ts05oGTj3GvKN9X">
+                {% csrf_token %}
                 <div class="container">
                   <table id="result_list">
                     <thead>

@@ -22,7 +22,7 @@
           <div class="module" id="changelist">
             <div class="changelist-form-container">
               <form id="changelist-form" method="post" novalidate>
-                <input type="hidden" name="csrfmiddlewaretoken" value="Wd5YwtJ6aVYN5wzg6rlYY6ENxT4NAAFDbPQuXvXpiBxzNToY3Ts05oGTj3GvKN9X">
+                {% csrf_token %}
                 <div class="container">
                   <table id="result_list">
                     <thead>
@@ -52,14 +52,14 @@
                             <th class="">
                               {% if dados.Manutentor == none %}
                                 {% if dados.Situacao == 'concluido' %}
-                                  <a>{{ dados.Equipamento }}</a>
+                                  <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
                                 {% else %}
                                   <a href="{% url 'ordem_abrir' dados.id %}">{{ dados.Equipamento }}</a>
                                 {% endif %}
                                 
                               {% else %}
                                 {% if dados.Situacao == 'concluido' %}
-                                  <a>{{ dados.Equipamento }}</a>
+                                  <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
                                 {% else %}
                                   <a href="{% url 'ordem_fechar' dados.id %}">{{ dados.Equipamento }}</a>
                                 {% endif %}

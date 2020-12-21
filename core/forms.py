@@ -40,3 +40,8 @@ class AbrirOrdemForm(ModelForm):
         fields = {
             'Manutentor',
         }
+
+class OrdemConsultarForm(ModelForm):
+    class Meta:
+        model = Ordem
+        fields = '__all__'

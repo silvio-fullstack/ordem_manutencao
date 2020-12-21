@@ -19,7 +19,7 @@
           {{ form.as_p }}
           <!-- Até Aqui -->
         </fieldset>
-        <input type="hidden" name="csrfmiddlewaretoken" value="N3nCes0NlLK5Xu262mnto6uvYoD8ODoP4wbFIQVymDr7Eg3mEqVHkxcJvCzXSheF">
+        {% csrf_token %}
         <div>
           <div class="submit-row">
             <input type="submit" value="Salvar" class="default" name="_save">

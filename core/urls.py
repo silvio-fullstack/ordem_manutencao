@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import manutentor, manutentor_add, manutentor_update, manutentor_delete, equipamentos, equipamentos_add, equipamentos_delete, equipamentos_update, ordem, ordem_add, ordem_delete, ordem_update, ordem_fechar, ordem_abrir
+from .views import manutentor, manutentor_add, manutentor_update, manutentor_delete, equipamentos, equipamentos_add, equipamentos_delete, equipamentos_update, ordem, ordem_add, ordem_delete, ordem_update, ordem_fechar, ordem_abrir, ordem_consultar
 
 
 urlpatterns = [
@@ -22,4 +22,5 @@ urlpatterns = [
     path('ordem_delete/<int:id>', ordem_delete, name='ordem_delete'),  
     path('ordem_fechar/<int:id>', ordem_fechar, name='ordem_fechar'), 
     path('ordem_abrir/<int:id>', ordem_abrir, name='ordem_abrir'), 
+    path('ordem_consultar/<int:id>', ordem_consultar, name='ordem_consultar'),
 ]

@@ -3,14 +3,14 @@
 {% block breadcrumbs %}
     <a href="#">Início</a>
     &rsaquo; 
-    <a href="{% url 'manutencao' %}">Manutentor</a>
-    &rsaquo; Atualizar
+    <a href="{% url 'ordem' %}">Ordem</a>
+    &rsaquo; Consultar
 {% endblock %}
 
 {% block main %}
 <div class="content">
     <div id="content" class="colM">
-      <spam>Atualizar Manutentor {{ dados.Nome }}</spam>
+      <spam>Consultar {{ dados.id }}</spam>
       <div id="content-main">
         <form method="post" id="manutencao_form" novalidate>
           <fieldset class="module aligned ">
@@ -22,7 +22,7 @@
           <div>
             <div class="submit-row">
               <p class="deletelink-box">
-                <a href="{% url 'manutentor_delete' dados.id %}" class="deletelink">Apagar</a>
+                <a href="{% url 'ordem_consultar' dados.id %}" class="deletelink">Apagar</a>
               </p>
               <input type="submit" value="Salvar" class="default" name="_save">
             </div>
