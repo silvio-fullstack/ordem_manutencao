@@ -65,10 +65,28 @@ class Ordem(models.Model):
         ('peca', 'Aguardando Peça'),
         ('atendimento', 'Em Atendimento'),
     ]
+    estado_choices = [
+        ('Parado', 'Equipamento Parado'),
+        ('Funcionando', 'Equipamento Funcionando'),
+        ('Programado', 'Serviço Programado'),
+        ('Melhoria', 'Serviço de Melhoria'),
+    ]
+    tipo_choices = [
+        ('Corretivo', 'Serviço Corretivo'),
+        ('Preventivo', 'Serviço Preventivo'),
+        ('Inspecao', 'Serviço de Inpeção'),
+        ('Melhoria', 'Serviço de Melhoria'),
+    ]
+
     Modificado = models.DateTimeField(auto_now=True)
     Solicitante = models.CharField(max_length=50, help_text='Solicitante da Ordem')
     Equipamento = models.ForeignKey(Equipamentos, on_delete=models.CASCADE)
-    Tipo_Servico = models.CharField(max_length=50, help_text='Tipo do Serviço')
+    Tipo_Servico = models.CharField(
+        verbose_name='Tipo do Serviço', 
+        max_length=25,
+        choices=tipo_choices,
+        default='Corretivo',     
+    )
     Descricao = models.TextField()
     Setor = models.CharField(max_length=50, help_text='Setor do Serviço')
     Causa = models.TextField(help_text='Causa do Problema', null=True, blank=True)
@@ -80,4 +98,19 @@ class Ordem(models.Model):
         choices=funcao_choices,
         default='aguardando',
     )
-   
+    Estado = models.CharField(
+        verbose_name='Estado do Equipamento', 
+        max_length=25,
+        choices=estado_choices,
+        default='Parado',
+    )
+    Abertura_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    Inicio_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    Termino_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+
+
+class Almoxarifado(Base):
+    Peca = models.CharField(max_length=50, help_text="Nome da Peça")
+    Rua = models.CharField(max_length=10, help_text="Rua da Peça")
+    Local = models.CharField(max_length=10, help_text="Local da Peça")
+    Preco = models.IntegerField(max_length=10, help_text="Valor da Peça")

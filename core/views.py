@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Manutencao, Equipamentos, Ordem
 from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm, OrdemConsultarForm
+from datetime import datetime
 
 
 # --- VIEWS DOS MANUTENTORES ------------------------
@@ -108,16 +109,20 @@ def ordem(request):
 
 
 def ordem_add(request):
+    dados = Ordem.objects.all()
+    form = OrdemForm()
+    context = {
+        'dados': dados,
+        'form': form,
+    }
     if request.method == 'POST':
         form = OrdemForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('ordem')
-    form = OrdemForm()
-    context = {
-        'form': form,
-    }
+
     return render(request, 'ordem/ordem_add.html', context)
+
 
 def ordem_fechar(request, id):
     dados = Ordem.objects.get(id=id)
@@ -128,7 +133,10 @@ def ordem_fechar(request, id):
     }
 
     if request.method == 'POST':
+        now = datetime.now()
         dados.Situacao = 'concluido'
+        dados.Estado = 'Funcionando'
+        dados.Termino_servico = now
         if form.is_valid():
             form.save()
             return redirect('ordem')
@@ -145,7 +153,9 @@ def ordem_abrir(request, id):
     }
 
     if request.method == 'POST':
+        now = datetime.now()
         dados.Situacao = 'atendimento'
+        dados.Inicio_servico = now
         if form.is_valid():
             form.save()
             return redirect('ordem')

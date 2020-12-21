@@ -23,6 +23,7 @@ class OrdemForm(ModelForm):
             'Tipo_Servico',
             'Descricao',
             'Setor',
+            'Estado',
             }
 
 class FecharOrdemForm(ModelForm):
@@ -32,6 +33,7 @@ class FecharOrdemForm(ModelForm):
             'Causa',
             'Manutentor',
             'Realizado',
+            'Estado',
         }
 
 class AbrirOrdemForm(ModelForm):

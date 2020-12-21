@@ -10,33 +10,159 @@
 {% block main %}
 <div class="content">
     <div id="content" class="colM">
-      <spam>Consultar {{ dados.id }}</spam>
+      <spam>Consultar Ordem de Número: {{ dados.id }}</spam>
+      <div id="content" class="colM">
+
+        </br>
+        </br>
+
+        <table id="result_list">
+          <thead>
+            <tr>
+              <th scope="col"  class="">
+                <div><span>Equipamento</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Setor</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Solicitante</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Aberto em:</span></div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+                <th class="">
+                  <a>{{ dados.Equipamento }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Setor }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Solicitante }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Modificado }}</a>
+                </th>
+            </tr>
+          </tbody>
+        </table>
+
+        </br>
+        </br>
+
+        <table id="result_list">
+          <thead>
+            <tr>
+              <th scope="col"  class="">
+                <div><span>Descrição</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Manutentor</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Estado</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Situação</span></div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+                <th class="">
+                  <a>{{ dados.Descricao }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Manutentor }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Estado }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Situacao }}</a>
+                </th>
+            </tr>
+          </tbody>
+        </table>
+
+        </br>
+        </br>
+
+        <table id="result_list">
+          <thead>
+            <tr>
+              <th scope="col"  class="">
+                <div><span>Tipo de Serviço</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Causa do Defeito</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Serviço Realizado</span></div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+                <th class="">
+                  <a>{{ dados.Tipo_Servico }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Causa }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Realizado }}</a>
+                </th>
+            </tr>
+          </tbody>
+        </table>
+
+        </br>
+        </br>
+
+        <table id="result_list">
+          <thead>
+            <tr>
+              <th scope="col"  class="">
+                <div><span>Inicio de Manutenção</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Termino de Manutenção</span></div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+                <th class="">
+                  <a>{{ dados.Inicio_servico }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Termino_servico }}</a>
+                </th>
+            </tr>
+          </tbody>
+        </table>
+
+        </br>
+        </br>
+
+      </div>
       <div id="content-main">
-        <form method="post" id="manutencao_form" novalidate>
-          <fieldset class="module aligned ">
-            <!-- Aqui OHHH -->
-            {{ form.as_p }}
-            <!-- Até Aqui -->
-          </fieldset>
-          {% csrf_token %}
-          <div>
-            <div class="submit-row">
-              <p class="deletelink-box">
-                <a href="{% url 'ordem_consultar' dados.id %}" class="deletelink">Apagar</a>
-              </p>
-              <input type="submit" value="Salvar" class="default" name="_save">
-            </div>
-            <script id="django-admin-form-add-constants"
-              src="/static/admin/js/change_form.js"
-              data-model-name="manutencao"
-              async>
-            </script>
-            <script id="django-admin-prepopulated-fields-constants"
-              src="/static/admin/js/prepopulate_init.js"
-              data-prepopulated-fields="[]">
-            </script>
-          </div>
-        </form>
+
+        <div class="submit-row">
+          <p class="deletelink-box">
+            <a href="{% url 'ordem' %}" class="deletelink">Voltar</a>
+          </p>
+          <input type="submit" value="Imprimir" class="default" name="_save">
+        </div>
       </div>
       <br class="clear">
     </div>

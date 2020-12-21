@@ -42,29 +42,89 @@
                         <th scope="col"  class="">
                           <div class="text"><span>Status</span></div>
                         </th>
-
+                        <th scope="col"  class="">
+                          <div class="text"><span>Estado</span></div>
+                        </th>
                       </tr>
                     </thead>
 
                     <tbody>
                       {% for dados in dados %}
                       <tr>
-                            <th class="">
+
+                          {% if dados.Estado == 'Parado' %}
+
+                            <th>
+
                               {% if dados.Manutentor == none %}
-                                {% if dados.Situacao == 'concluido' %}
-                                  <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
-                                {% else %}
-                                  <a href="{% url 'ordem_abrir' dados.id %}">{{ dados.Equipamento }}</a>
-                                {% endif %}
-                                
+                                  <a href="{% url 'ordem_abrir' dados.id %}" style="color:red;">{{ dados.Equipamento }}</a>
                               {% else %}
                                 {% if dados.Situacao == 'concluido' %}
-                                  <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
+                                  <a href="{% url 'ordem_consultar' dados.id %}" style="color: rgb(255, 230, 0);">{{ dados.Equipamento }}</a>
                                 {% else %}
-                                  <a href="{% url 'ordem_fechar' dados.id %}">{{ dados.Equipamento }}</a>
+                                  <a href="{% url 'ordem_fechar' dados.id %}" style="color: red;">{{ dados.Equipamento }}</a>
                                 {% endif %}
                               {% endif %}
+
                             </th>
+
+                          {% elif dados.Estado == 'Funcionando' %}
+
+                          <th style="color: red;">
+                            {% if dados.Manutentor == none %}
+                                <a href="{% url 'ordem_abrir' dados.id %}">{{ dados.Equipamento }}</a>
+                            {% else %}
+                              {% if dados.Situacao == 'concluido' %}
+                                <a href="{% url 'ordem_consultar' dados.id %}" style="color: green;">{{ dados.Equipamento }}</a>
+                              {% else %}
+                                <a href="{% url 'ordem_fechar' dados.id %}" style="color: green;">{{ dados.Equipamento }}</a>
+                              {% endif %}
+
+                            {% endif %}
+
+                          </th>
+
+                          {% elif dados.Estado == 'Programado' %}
+
+                          <th style="color: red;">
+                            {% if dados.Manutentor == none %}
+                              {% if dados.Situacao == 'concluido' %}
+                                <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
+                              {% else %}
+                                <a href="{% url 'ordem_abrir' dados.id %}">{{ dados.Equipamento }}</a>
+                              {% endif %}
+                              
+                            {% else %}
+                              {% if dados.Situacao == 'concluido' %}
+                                <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
+                              {% else %}
+                                <a href="{% url 'ordem_fechar' dados.id %}">{{ dados.Equipamento }}</a>
+                              {% endif %}
+                            {% endif %}
+                          </th>
+
+                          {% else %}
+
+                          <th style="color: red;">
+                            {% if dados.Manutentor == none %}
+                              {% if dados.Situacao == 'concluido' %}
+                                <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
+                              {% else %}
+                                <a href="{% url 'ordem_abrir' dados.id %}">{{ dados.Equipamento }}</a>
+                              {% endif %}
+                              
+                            {% else %}
+                              {% if dados.Situacao == 'concluido' %}
+                                <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
+                              {% else %}
+                                <a href="{% url 'ordem_fechar' dados.id %}">{{ dados.Equipamento }}</a>
+                              {% endif %}
+
+                            {% endif %}
+
+                          </th>
+                          {% endif %}
+
                           <th class="">
                             <a>{{ dados.Modificado }}</a>
                           </th>
@@ -80,6 +140,9 @@
                           </th>
                           <th class="">
                             <a>{{ dados.Situacao }}</a>
+                          </th>
+                          <th class="">
+                            <a>{{ dados.Estado }}</a>
                           </th>
                       </tr>
                       {% endfor %}
