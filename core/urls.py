@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import manutentor, manutentor_add, manutentor_update, manutentor_delete, equipamentos, equipamentos_add, equipamentos_delete, equipamentos_update, ordem, ordem_add, ordem_delete, ordem_update, ordem_fechar, ordem_abrir, ordem_consultar
+from .views import manutentor, manutentor_add, manutentor_update, manutentor_delete, equipamentos, equipamentos_add, equipamentos_delete, equipamentos_update, ordem, ordem_add, ordem_delete, ordem_update, ordem_fechar, ordem_abrir, ordem_consultar, almoxarifado, almoxarifado_add, almoxarifado_delete, almoxarifado_update
 
 
 urlpatterns = [
@@ -23,4 +23,10 @@ urlpatterns = [
     path('ordem_fechar/<int:id>', ordem_fechar, name='ordem_fechar'), 
     path('ordem_abrir/<int:id>', ordem_abrir, name='ordem_abrir'), 
     path('ordem_consultar/<int:id>', ordem_consultar, name='ordem_consultar'),
+    #------------------------------------------------------------------------------
+    # ALMOXARIFADO CRUD ----------------------------------------------------------
+    path('almoxarifado', almoxarifado, name='almoxarifado'),
+    path('almoxarifado_add', almoxarifado_add, name='almoxarifado_add'),
+    path('almoxarifado_update/<int:id>', almoxarifado_update, name='almoxarifado_update'),
+    path('almoxarifado_delete/<int:id>', almoxarifado_delete, name='almoxarifado_delete'),   
 ]

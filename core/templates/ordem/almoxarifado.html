@@ -1,0 +1,102 @@
+{% extends 'ordem/base.html' %}
+
+{% block breadcrumbs %}
+    <a href="#">Início</a>
+    &rsaquo; Almoxarifado
+{% endblock %}
+
+{% block main %}
+<div class="main shifted" id="main">
+    <div class="content">
+      <!-- Content -->
+      <div id="content" class="flex">
+        <p>Selecione uma peça para modificar</p>
+        <div id="content-main">
+          <ul class="object-tools">
+            <li>
+              <a href="{% url 'almoxarifado_add' %}" class="addlink">
+                Adicionar peça
+              </a>
+            </li>
+          </ul>
+          <div class="module" id="changelist">
+            <div class="changelist-form-container">
+              <form id="changelist-form" method="post" novalidate>
+                {% csrf_token %}
+                <div class="container">
+                  <table id="result_list">
+                    <thead>
+                      <tr>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Nome da Peça</span></div>
+                        </th>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Rua da Peça</span></div>
+                        </th>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Local da Peça</span></div>
+                        </th>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Quantidade em Estoque</span></div>
+                        </th>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Estoque Mínimo</span></div>
+                        </th>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Preço da Peça</span></div>
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {% for dados in dados %}
+                      <tr>
+                          {% if dados.Qto > dados.Minimo %}
+                          <th class="">
+                            <a href="{% url 'almoxarifado_update' dados.id %}" style="color: red;">{{ dados.Peca }}</a>
+                          </th>
+                          {% else %}
+                          <th class="">
+                            <a href="{% url 'almoxarifado_update' dados.id %}" style="color: green;">{{ dados.Peca }}</a>
+                          </th>
+                          {% endif %}
+                          <th class="">
+                            <a>{{ dados.Rua }}</a>
+                          </th>
+                          <th class="">
+                            <a>{{ dados.Local }}</a>
+                          </th>
+                          <th class="">
+                            <a>{{ dados.Qto }}</a>
+                          </th>
+                          <th class="">
+                            <a>{{ dados.Minimo }}</a>
+                          </th>
+                          <th class="">
+                            <a>R$ = {{ dados.Preco }}</a>
+                          </th>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  <p class="paginator">
+                    {% if dados.count == 1 %}
+                    <span>{{ dados.count }} > Peça</span>
+                    {% else %}
+                      <span>{{ dados.count }} > Peças</span>
+                    {% endif %}
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <br class="clear">
+        </div>
+          <!-- END Content -->
+          <div id="footer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

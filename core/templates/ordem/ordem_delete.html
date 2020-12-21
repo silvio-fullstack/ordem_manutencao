@@ -24,7 +24,8 @@
     <h2>Objetos</h2>
     <ul>	<li>Equipamento: <a href="{% url 'ordem_update' dados.id %}">{{ dados.Equipamento }}</a></li>
 	</ul>
-    <form method="post"><input type="hidden" name="csrfmiddlewaretoken" value="zuoaZPltE7s2fz9VAFJvE2mX9CcgqdtOQXcdtdgeFZ94WlabcJhJAt4bGQ85uRjE">
+    <form method="post">
+      {% csrf_token %}
     <div>
     <input type="hidden" name="post" value="yes">
     

@@ -3,7 +3,7 @@
 {% block breadcrumbs %}
     <a href="#">Início</a>
     &rsaquo; 
-    <a href="{% url 'manutencao' %}">Equipamento</a>
+    <a href="{% url 'almoxarifado' %}">Almoxarifado</a>
     &rsaquo; Deletar
 {% endblock %}
 
@@ -18,11 +18,11 @@
           <h1>Tem certeza?</h1>
           
 
-    <p>Você tem certeza que quer remover o equipamento {{ dados.Nome }}? Todos os itens relacionados serão removidos:</p>
+    <p>Você tem certeza que quer remover a Peça {{ dados.Peca }}? Todos os itens relacionados serão removidos:</p>
     
 
     <h2>Objetos</h2>
-    <ul>	<li>Equipamento: <a href="{% url 'equipamento_update' dados.id %}">{{ dados.Nome }}</a></li>
+    <ul>	<li>Peça: <a href="{% url 'almoxarifado_update' dados.id %}">{{ dados.Peca }}</a></li>
   </ul>
   <form method="post">
     {% csrf_token %}
@@ -31,7 +31,7 @@
     
     
     <input type="submit" value="Sim, eu tenho certeza">
-    <a href="{% url 'equipamento' %}" class="button cancel-link">Não, me leve de volta</a>
+    <a href="{% url 'almoxarifado' %}" class="button cancel-link">Não, me leve de volta</a>
     </div>
     </form>
 

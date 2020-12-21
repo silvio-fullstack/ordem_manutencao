@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Manutencao, Equipamentos, Ordem
-from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm, OrdemConsultarForm
+from .models import Manutencao, Equipamentos, Ordem, Almoxarifado
+from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm, OrdemConsultarForm, AlmoxarifadoForm
 from datetime import datetime
 
 
@@ -126,10 +126,12 @@ def ordem_add(request):
 
 def ordem_fechar(request, id):
     dados = Ordem.objects.get(id=id)
+    almox = Almoxarifado.objects.all()
     form = FecharOrdemForm(request.POST or None, instance=dados)
     context = {
         'dados': dados,
         'form': form,
+        'almox': almox,
     }
 
     if request.method == 'POST':
@@ -197,3 +199,52 @@ def ordem_consultar(request, id):
     }
 
     return render(request, 'ordem/ordem_consultar.html', context)
+
+
+#------ VIEWS do Almoxarifado ----------------------------
+
+
+def almoxarifado(request):
+    dados = Almoxarifado.objects.all()
+    context = {
+        'dados': dados,
+    }
+    return render(request, 'ordem/almoxarifado.html', context)
+
+
+def almoxarifado_add(request):
+    if request.method == 'POST':
+        form = AlmoxarifadoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('almoxarifado')
+    form = AlmoxarifadoForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'ordem/almoxarifado_add.html', context)
+
+def almoxarifado_update(request, id):
+    dados = Almoxarifado.objects.get(id=id)
+    form = AlmoxarifadoForm(request.POST or None, instance=dados)
+    context = {
+        'dados': dados,
+        'form': form,
+    }
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('almoxarifado')
+    else:
+        return render(request, 'ordem/almoxarifado_update.html', context)
+
+
+def almoxarifado_delete(request, id):
+    dados = Almoxarifado.objects.get(id=id)
+
+    if request.method == 'POST':
+        dados.delete()
+        return redirect('almoxarifado')
+    else:
+        return render(request, 'ordem/almoxarifado_delete.html', {'dados': dados})

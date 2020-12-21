@@ -23,8 +23,9 @@
 
     <h2>Objetos</h2>
     <ul>	<li>Manutentor: <a href="{% url 'manutentor_update' dados.id %}">{{ dados.Nome }}</a></li>
-	</ul>
-    <form method="post"><input type="hidden" name="csrfmiddlewaretoken" value="zuoaZPltE7s2fz9VAFJvE2mX9CcgqdtOQXcdtdgeFZ94WlabcJhJAt4bGQ85uRjE">
+  </ul>
+  <form method="post">
+    {% csrf_token %}
     <div>
     <input type="hidden" name="post" value="yes">
     

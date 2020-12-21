@@ -55,6 +55,15 @@ class AbrirOrdem(models.Model):
         default='aguardando',
     )
 
+class Almoxarifado(Base):
+    Peca = models.CharField(max_length=50, help_text="Nome da Peça")
+    Rua = models.CharField(max_length=10, help_text="Rua da Peça")
+    Local = models.CharField(max_length=10, help_text="Local da Peça")
+    Preco = models.FloatField(max_length=10, help_text="Valor da Peça")
+    Qto = models.IntegerField(max_length=2, help_text="Quantidade de Peças em Estoque")
+    Minimo = models.CharField(max_length=2, help_text="Estoque Minimo")
+
+
 class Ordem(models.Model):
     funcao_choices = [
         ('concluido', 'Serviço Concluido'),
@@ -109,8 +118,3 @@ class Ordem(models.Model):
     Termino_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
 
 
-class Almoxarifado(Base):
-    Peca = models.CharField(max_length=50, help_text="Nome da Peça")
-    Rua = models.CharField(max_length=10, help_text="Rua da Peça")
-    Local = models.CharField(max_length=10, help_text="Local da Peça")
-    Preco = models.IntegerField(max_length=10, help_text="Valor da Peça")
