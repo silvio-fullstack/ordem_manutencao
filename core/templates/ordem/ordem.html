@@ -34,7 +34,10 @@
                           <div class="text"><span>Criado em</span></div>
                         </th>
                         <th scope="col"  class="">
-                          <div class="text"><span>Solicitante</span></div>
+                          <div class="text"><span>Tipo Serviço</span></div>
+                        </th>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Descrição do Defeito</span></div>
                         </th>
                         <th scope="col"  class="">
                           <div class="text"><span>Manutentor</span></div>
@@ -129,7 +132,10 @@
                             <a>{{ dados.Modificado }}</a>
                           </th>
                           <th class="">
-                            <a>{{ dados.Solicitante }}</a>
+                            <a>{{ dados.Tipo_Servico }}</a>
+                          </th>
+                          <th class="">
+                            <a>{{ dados.Descricao }}</a>
                           </th>
                           <th class="">
                             {% if dados.Manutentor == none %}
