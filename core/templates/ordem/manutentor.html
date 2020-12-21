@@ -31,6 +31,9 @@
                           <div class="text"><span>Manutentor</span></div>
                         </th>
                         <th scope="col"  class="">
+                          <div class="text"><span>Função</span></div>
+                        </th>
+                        <th scope="col"  class="">
                           <div class="text"><span>Criado em</span></div>
                         </th>
                         <th scope="col"  class="">
@@ -45,6 +48,9 @@
                       <tr>
                           <th class="">
                             <a href="{% url 'manutentor_update' dados.id %}">{{ dados.Nome }}</a>
+                          </th>
+                          <th class="">
+                            <a>{{ dados.funcao }}</a>
                           </th>
                           <th class="">
                             <a>{{ dados.create }}</a>
