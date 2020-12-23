@@ -1,0 +1,171 @@
+{% extends 'ordem/base.html' %}
+
+{% block breadcrumbs %}
+    <a href="#">Início</a>
+    &rsaquo; 
+    <a href="{% url 'ordem' %}">Ordem</a>
+    &rsaquo; Consultar
+{% endblock %}
+
+{% block main %}
+<div class="content">
+    <div id="content" class="colM">
+      <spam>Consultar Ordem de Número: {{ dados.id }}</spam>
+      <div id="content" class="colM">
+
+        </br>
+        </br>
+
+        <table id="result_list">
+          <thead>
+            <tr>
+              <th scope="col"  class="">
+                <div><span>Equipamento</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Setor</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Solicitante</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Aberto em:</span></div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+                <th class="">
+                  <a>{{ dados.Equipamento }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Setor }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Solicitante }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Modificado }}</a>
+                </th>
+            </tr>
+          </tbody>
+        </table>
+
+        </br>
+        </br>
+
+        <table id="result_list">
+          <thead>
+            <tr>
+              <th scope="col"  class="">
+                <div><span>Descrição</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Manutentor</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Estado</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Situação</span></div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+                <th class="">
+                  <a>{{ dados.Descricao }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Manutentor }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Estado }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Situacao }}</a>
+                </th>
+            </tr>
+          </tbody>
+        </table>
+
+        </br>
+        </br>
+
+        <table id="result_list">
+          <thead>
+            <tr>
+              <th scope="col"  class="">
+                <div><span>Tipo de Serviço</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Causa do Defeito</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Serviço Realizado</span></div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+                <th class="">
+                  <a>{{ dados.Tipo_Servico }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Causa }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Realizado }}</a>
+                </th>
+            </tr>
+          </tbody>
+        </table>
+
+        </br>
+        </br>
+
+        <table id="result_list">
+          <thead>
+            <tr>
+              <th scope="col"  class="">
+                <div><span>Inicio de Manutenção</span></div>
+              </th>
+              <th scope="col"  class="">
+                <div><span>Termino de Manutenção</span></div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+                <th class="">
+                  <a>{{ dados.Inicio_servico }}</a>
+                </th>
+                <th class="">
+                  <a>{{ dados.Termino_servico }}</a>
+                </th>
+            </tr>
+          </tbody>
+        </table>
+
+        </br>
+        </br>
+
+      </div>
+      <div id="content-main">
+
+        <div class="submit-row">
+          <p class="deletelink-box">
+            <a href="{% url 'ordem' %}" class="deletelink">Voltar</a>
+          </p>
+          <input type="submit" value="Imprimir" class="default" name="_save">
+        </div>
+      </div>
+      <br class="clear">
+    </div>
+  </div>
+  
+{% endblock %}

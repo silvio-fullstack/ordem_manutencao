@@ -15,7 +15,7 @@
     </br>
     </br>
     <div id="content-main">
-      <form method="post" id="manutencao_form" novalidate>
+      <form action="{% url 'ordem_fechar' dados.id %}" method="post" novalidate>
         <fieldset class="module aligned ">
           <!-- Aqui OHHH -->
           {{ form.as_p }}
@@ -23,10 +23,9 @@
           
         </fieldset>
         {% csrf_token %}
-        
         <div>
           <div class="submit-row">
-            <input type="submit" value="Salvar" class="default" name="_save">
+            <input type="submit" value="Fechar Ordem" class="default" name="_save">
           </div>
           <script id="django-admin-form-add-constants"
             src="/static/admin/js/change_form.js"

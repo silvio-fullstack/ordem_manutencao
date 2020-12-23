@@ -1,8 +1,22 @@
 from django.shortcuts import render, redirect
-from .models import Manutencao, Equipamentos, Ordem, Almoxarifado
-from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm, OrdemConsultarForm, AlmoxarifadoForm, AbrirOrdemForm
+from .models import (
+    Manutencao, 
+    Equipamentos, 
+    Ordem, 
+    Almoxarifado,
+)
+from .forms import (
+    ManutencaoForm, 
+    EquipamentosForm, 
+    OrdemForm, 
+    FecharOrdemForm, 
+    AbrirOrdemForm, 
+    OrdemConsultarForm, 
+    AlmoxarifadoForm, 
+    AbrirOrdemForm,
+)
 from datetime import datetime
-
+from django.contrib import messages
 
 # --- VIEWS DOS MANUTENTORES ------------------------
 def manutentor(request):
@@ -122,6 +136,42 @@ def ordem_add(request):
             return redirect('ordem')
 
     return render(request, 'ordem/ordem_add.html', context)
+
+
+def ordem_visualizar(request, id):
+    dados = Ordem.objects.get(id=id)
+    almox = Almoxarifado.objects.all()
+    form = OrdemConsultarForm(request.POST or None, instance=dados)
+    context = {
+        'dados': dados,
+        'form': form,
+        'almox': almox,
+    }
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('ordem')
+    else:
+        return render(request, 'ordem/ordem_consultar.html', context)   
+
+def ordem_salvar(request, id):
+    dados = Ordem.objects.get(id=id)
+    almox = Almoxarifado.objects.all()
+    form = OrdemConsultarForm(request.POST or None, instance=dados)
+    context = {
+        'dados': dados,
+        'form': form,
+        'almox': almox,
+    }
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('ordem')
+            messages.success(request, 'DEU CERTO')
+    else:
+        return render(request, 'ordem/ordem_visualizar.html', context)   
 
 
 def ordem_fechar(request, id):
