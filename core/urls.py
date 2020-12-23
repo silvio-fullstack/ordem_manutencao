@@ -23,11 +23,16 @@ from .views import (
     ordem_visualizar,
     )
 
-from core.views import MeuView
+from core.views import MeuView, BookListView, BookCreateView, BookDetailView, BookUpdateView, BookDeleteView
 
 urlpatterns = [
     # -------------------- CLASS BASED VIEWS --------------------------------------
     path('cbv/', MeuView.as_view()),
+    path('book', BookListView.as_view(), name='book-list'),
+    path('book/create', BookCreateView.as_view(), name='book-create'),
+    path('book/<int:pk>', BookDetailView.as_view(), name='book-detail'),
+    path('book/<int:pk>/update', BookUpdateView.as_view(), name='book-update'),
+    path('book/<int:pk>/delete', BookDeleteView.as_view(), name='book-delete'),
     # -----------------------------------------------------------------------------
     # Manutentores CRUD -------------------------------------------------------------
     path('manutentor/', manutentor, name='manutencao'),

@@ -117,3 +117,14 @@ class Ordem(models.Model):
     Inicio_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Termino_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Pecas = models.ManyToManyField(Almoxarifado, null=True, blank=True)
+
+class Book(models.Model):
+
+    name = models.CharField(max_length=255)
+    isbn_number = models.CharField(max_length=13)
+
+    class Meta:
+        db_table = 'book'
+
+    def __str__(self):
+        return self.name
