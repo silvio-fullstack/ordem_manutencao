@@ -28,7 +28,7 @@ from core.views import MeuView, BookListView, BookCreateView, BookDetailView, Bo
 urlpatterns = [
     # -------------------- CLASS BASED VIEWS --------------------------------------
     path('cbv/', MeuView.as_view()),
-    path('book', BookListView.as_view(), name='book-list'),
+    path('book/', BookListView.as_view(), name='book-list'),
     path('book/create', BookCreateView.as_view(), name='book-create'),
     path('book/<int:pk>', BookDetailView.as_view(), name='book-detail'),
     path('book/<int:pk>/update', BookUpdateView.as_view(), name='book-update'),
