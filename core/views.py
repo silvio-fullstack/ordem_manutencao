@@ -17,6 +17,18 @@ from .forms import (
 )
 from datetime import datetime
 from django.contrib import messages
+from django.views.generic import TemplateView, View, ListView
+
+# ----- CLASS BASED VIEWS --------------------------
+class MeuView(ListView):
+    model = Ordem
+    def head(self, *args, **kwargs):
+            last_book = self.get_queryset().latest('publication_date')
+            response = HttpResponse()
+            # RFC 1123 date format
+            response['Last-Modified'] = last_book.publication_date.strftime('%a, %d %b %Y %H:%M:%S GMT')
+            return response
+# --------------------------------------------------
 
 # --- VIEWS DOS MANUTENTORES ------------------------
 def manutentor(request):

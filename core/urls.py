@@ -23,8 +23,12 @@ from .views import (
     ordem_visualizar,
     )
 
+from core.views import MeuView
 
 urlpatterns = [
+    # -------------------- CLASS BASED VIEWS --------------------------------------
+    path('cbv/', MeuView.as_view()),
+    # -----------------------------------------------------------------------------
     # Manutentores CRUD -------------------------------------------------------------
     path('manutentor/', manutentor, name='manutencao'),
     path('manutentor_add/', manutentor_add, name='manutencao_add'),
