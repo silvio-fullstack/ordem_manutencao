@@ -5,12 +5,30 @@
     &rsaquo; Ordens
 {% endblock %}
 
+{% block header %}
+<div id="header">
+  <div id="branding">
+    <h1 id="site-name">
+      <a href="/admin/">Gestão de Manutenção</a>
+    </h1>
+  </div>
+  <div id="user-tools">
+    Bem-vindo(a),
+    <strong>silvio</strong>.
+    <a href="/">Ver o site</a> /
+    <a href="/admin/password_change/">Alterar senha</a> /
+    <a href="/admin/logout/">Encerrar sessão</a>
+  </div>
+</div>
+{% endblock %}
+
+
 {% block main %}
 <div class="main shifted" id="main">
     <div class="content">
       <!-- Content -->
       <div id="content" class="flex">
-        <p>Selecione uma Ordem para modificar</p>
+        <p>Selecione uma ordem para edição</p>
         <div id="content-main">
           <ul class="object-tools">
             <li>
@@ -43,7 +61,7 @@
                           <div class="text"><span>Manutentor</span></div>
                         </th>
                         <th scope="col"  class="">
-                          <div class="text"><span>Status</span></div>
+                          <div class="text"><span>Situação</span></div>
                         </th>
                         <th scope="col"  class="">
                           <div class="text"><span>Estado</span></div>
@@ -65,7 +83,7 @@
                                 {% if dados.Situacao == 'concluido' %}
                                   <a href="{% url 'ordem_consultar' dados.id %}" style="color: rgb(255, 230, 0);">{{ dados.Equipamento }}</a>
                                 {% else %}
-                                  <a href="{% url 'ordem_fechar' dados.id %}" style="color: red;">{{ dados.Equipamento }}</a>
+                                  <a href="{% url 'ordem_update' dados.id %}" style="color: red;">{{ dados.Equipamento }}</a>
                                 {% endif %}
                               {% endif %}
 
@@ -80,7 +98,7 @@
                               {% if dados.Situacao == 'concluido' %}
                                 <a href="{% url 'ordem_consultar' dados.id %}" style="color: green;">{{ dados.Equipamento }}</a>
                               {% else %}
-                                <a href="{% url 'ordem_fechar' dados.id %}" style="color: green;">{{ dados.Equipamento }}</a>
+                                <a href="{% url 'ordem_update' dados.id %}" style="color: green;">{{ dados.Equipamento }}</a>
                               {% endif %}
 
                             {% endif %}
@@ -101,7 +119,7 @@
                               {% if dados.Situacao == 'concluido' %}
                                 <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
                               {% else %}
-                                <a href="{% url 'ordem_fechar' dados.id %}">{{ dados.Equipamento }}</a>
+                                <a href="{% url 'ordem_update' dados.id %}">{{ dados.Equipamento }}</a>
                               {% endif %}
                             {% endif %}
                           </th>
@@ -120,7 +138,7 @@
                               {% if dados.Situacao == 'concluido' %}
                                 <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
                               {% else %}
-                                <a href="{% url 'ordem_fechar' dados.id %}">{{ dados.Equipamento }}</a>
+                                <a href="{% url 'ordem_update' dados.id %}">{{ dados.Equipamento }}</a>
                               {% endif %}
 
                             {% endif %}

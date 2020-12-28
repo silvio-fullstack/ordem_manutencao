@@ -36,6 +36,14 @@ class FecharOrdemForm(ModelForm):
             'Estado',
         }
 
+class UpdateForm(ModelForm):
+    class Meta:
+        model = Ordem
+        fields = {
+            'Manutentor',
+            'Estado',
+        }  
+
 class AbrirOrdemForm(ModelForm):
     class Meta:
         model = Ordem

@@ -4,7 +4,22 @@
     <a href="#">Início</a>
     &rsaquo; Almoxarifado
 {% endblock %}
-
+{% block header %}
+<div id="header">
+  <div id="branding">
+    <h1 id="site-name">
+      <a href="/admin/">Gestão de Manutenção</a>
+    </h1>
+  </div>
+  <div id="user-tools">
+    Bem-vindo(a),
+    <strong>silvio</strong>.
+    <a href="/">Ver o site</a> /
+    <a href="/admin/password_change/">Alterar senha</a> /
+    <a href="/admin/logout/">Encerrar sessão</a>
+  </div>
+</div>
+{% endblock %}
 {% block main %}
 <div class="main shifted" id="main">
     <div class="content">

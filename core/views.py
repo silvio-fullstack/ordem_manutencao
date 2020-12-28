@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Manutencao, Equipamentos, Ordem, Almoxarifado
-from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm, OrdemConsultarForm, AlmoxarifadoForm, AbrirOrdemForm
+from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm, OrdemConsultarForm, AlmoxarifadoForm, AbrirOrdemForm, UpdateForm
 from datetime import datetime
-
+from django.contrib.auth.models import User
 
 # --- VIEWS DOS MANUTENTORES ------------------------
 def manutentor(request):
@@ -148,6 +148,8 @@ def ordem_fechar(request, id):
 
 def ordem_abrir(request, id):
     dados = Ordem.objects.get(id=id)
+    usuario = User.objects.all()
+    print(f'Valor do Dados.Manutencao é {usuario}')
     form = AbrirOrdemForm(request.POST or None, instance=dados)
     context = {
         'dados': dados,
@@ -156,30 +158,36 @@ def ordem_abrir(request, id):
 
     if request.method == 'POST':
         now = datetime.now()
-        dados.Situacao = 'atendimento'
-        dados.Inicio_servico = now
         if form.is_valid():
             form.save()
-            return redirect('ordem')
+
+        valor = dados.Manutentor
+        print(f'O valor e {valor}')
+        if valor != None:
+            dados.Situacao = 'atendimento'
+            dados.Inicio_servico = now
+            form.save()
+
+        return redirect('ordem')
     else:
         return render(request, 'ordem/ordem_abrir.html', context)
 
-
 def ordem_update(request, id):
     dados = Ordem.objects.get(id=id)
-    form = OrdemForm(request.POST or None, instance=dados)
+    almox = Almoxarifado.objects.all()
+    form = UpdateForm(request.POST or None, instance=dados)
     context = {
         'dados': dados,
         'form': form,
+        'almox': almox,
     }
 
-    if request.method == 'POST':
+    if request.method == 'POST' and '_save' in request.POST:
         if form.is_valid():
             form.save()
             return redirect('ordem')
     else:
         return render(request, 'ordem/ordem_update.html', context)
-
 
 def ordem_delete(request, id):
     dados = Ordem.objects.get(id=id)
