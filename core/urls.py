@@ -1,8 +1,39 @@
 from django.urls import path
-from .views import manutentor, manutentor_add, manutentor_update, manutentor_delete, equipamentos, equipamentos_add, equipamentos_delete, equipamentos_update, ordem, ordem_add, ordem_delete, ordem_update, ordem_fechar, ordem_abrir, ordem_consultar, almoxarifado, almoxarifado_add, almoxarifado_delete, almoxarifado_update, adicionar_peca
+from .views import (
+    manutentor, 
+    manutentor_add, 
+    manutentor_update, 
+    manutentor_delete, 
+    equipamentos, 
+    equipamentos_add, 
+    equipamentos_delete, 
+    equipamentos_update, 
+    ordem, ordem_add, 
+    ordem_delete, 
+    ordem_update, 
+    ordem_fechar, 
+    ordem_abrir, 
+    ordem_consultar, 
+    almoxarifado, 
+    almoxarifado_add, 
+    almoxarifado_delete, 
+    almoxarifado_update, 
+    adicionar_peca, 
+    ordem_salvar, 
+    ordem_visualizar,
+    )
 
+from core.views import MeuView, BookListView, BookCreateView, BookDetailView, BookUpdateView, BookDeleteView
 
 urlpatterns = [
+    # -------------------- CLASS BASED VIEWS --------------------------------------
+    path('cbv/', MeuView.as_view()),
+    path('book/', BookListView.as_view(), name='book-list'),
+    path('book/create', BookCreateView.as_view(), name='book-create'),
+    path('book/<int:pk>', BookDetailView.as_view(), name='book-detail'),
+    path('book/<int:pk>/update', BookUpdateView.as_view(), name='book-update'),
+    path('book/<int:pk>/delete', BookDeleteView.as_view(), name='book-delete'),
+    # -----------------------------------------------------------------------------
     # Manutentores CRUD -------------------------------------------------------------
     path('manutentor/', manutentor, name='manutencao'),
     path('manutentor_add/', manutentor_add, name='manutencao_add'),
@@ -24,6 +55,8 @@ urlpatterns = [
     path('ordem_abrir/<int:id>', ordem_abrir, name='ordem_abrir'), 
     path('ordem_consultar/<int:id>', ordem_consultar, name='ordem_consultar'),
     path('adicionar_peca', adicionar_peca, name='adicionar_peca'),
+    path('ordem_salvar/<int:id>', ordem_salvar, name='ordem_salvar'),
+    path('ordem_visualizar/<int:id>', ordem_visualizar, name='ordem_visualizar'),
     #------------------------------------------------------------------------------
     # ALMOXARIFADO CRUD ----------------------------------------------------------
     path('almoxarifado', almoxarifado, name='almoxarifado'),
