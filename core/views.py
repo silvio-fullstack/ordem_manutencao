@@ -77,6 +77,7 @@ class BookDeleteView(DeleteView):
 
 # --- VIEWS DOS MANUTENTORES ------------------------
 
+@login_required
 def manutentor(request):
     dados = Manutencao.objects.all()
 
@@ -86,7 +87,7 @@ def manutentor(request):
     }
     return render(request, 'ordem/manutentor.html', context)
 
-
+@login_required
 def manutentor_add(request):
     if request.method == 'POST':
         form = ManutencaoForm(request.POST)
@@ -101,6 +102,7 @@ def manutentor_add(request):
     }
     return render(request, 'ordem/manutentor_add.html', context)
 
+@login_required
 def manutentor_update(request, id):
     dados = Manutencao.objects.get(id=id)
     form = ManutencaoForm(request.POST or None, instance=dados)
@@ -119,6 +121,7 @@ def manutentor_update(request, id):
         return render(request, 'ordem/manutentor_update.html', context)
 
 
+@login_required
 def manutentor_delete(request, id):
     dados = Manutencao.objects.get(id=id)
  
@@ -132,6 +135,7 @@ def manutentor_delete(request, id):
 
 # ----- VIEWS DO EQUIPAMENTOS
 
+@login_required
 def equipamentos(request):
     dados = Equipamentos.objects.all()
     context = {
@@ -141,6 +145,7 @@ def equipamentos(request):
     return render(request, 'ordem/equipamento.html', context)
 
 
+@login_required
 def equipamentos_add(request):
     if request.method == 'POST':
         form = EquipamentosForm(request.POST)
@@ -155,6 +160,7 @@ def equipamentos_add(request):
     }
     return render(request, 'ordem/equipamento_add.html', context)
 
+@login_required
 def equipamentos_update(request, id):
     dados = Equipamentos.objects.get(id=id)
     form = EquipamentosForm(request.POST or None, instance=dados)
@@ -172,7 +178,7 @@ def equipamentos_update(request, id):
     else:
         return render(request, 'ordem/equipamento_update.html', context)
 
-
+@login_required
 def equipamentos_delete(request, id):
     dados = Equipamentos.objects.get(id=id)
 
@@ -184,7 +190,7 @@ def equipamentos_delete(request, id):
         return render(request, 'ordem/equipamento_delete.html', {'dados': dados})
 
 #--- VIEWS ---- ORDEM DE SERVICO ----------------------------------------------
-@login_required()
+@login_required
 def ordem(request):
     dados = Ordem.objects.all()
     context = {
@@ -193,7 +199,7 @@ def ordem(request):
     }
     return render(request, 'ordem/ordem.html', context)
 
-
+@login_required
 def ordem_add(request):
     dados = Ordem.objects.all()
     form = OrdemForm()
@@ -210,7 +216,7 @@ def ordem_add(request):
 
     return render(request, 'ordem/ordem_add.html', context)
 
-
+@login_required
 def ordem_visualizar(request, id):
     dados = Ordem.objects.get(id=id)
     almox = Almoxarifado.objects.all()
@@ -227,7 +233,7 @@ def ordem_visualizar(request, id):
             return redirect('ordem')
     else:
         return render(request, 'ordem/ordem_consultar.html', context)   
-
+@login_required
 def ordem_salvar(request, id):
     dados = Ordem.objects.get(id=id)
     almox = Almoxarifado.objects.all()
@@ -246,7 +252,7 @@ def ordem_salvar(request, id):
     else:
         return render(request, 'ordem/ordem_visualizar.html', context)   
 
-
+@login_required
 def ordem_fechar(request, id):
     dados = Ordem.objects.get(id=id)
     almox = Almoxarifado.objects.all()
@@ -269,7 +275,7 @@ def ordem_fechar(request, id):
     else:
         return render(request, 'ordem/ordem_fechar.html', context)
 
-
+@login_required
 def ordem_abrir(request, id):
     dados = Ordem.objects.get(id=id)
     usuario = User.objects.all()
@@ -297,6 +303,7 @@ def ordem_abrir(request, id):
     else:
         return render(request, 'ordem/ordem_abrir.html', context)
 
+@login_required
 def ordem_update(request, id):
     dados = Ordem.objects.get(id=id)
     almox = Almoxarifado.objects.all()
@@ -315,6 +322,7 @@ def ordem_update(request, id):
     else:
         return render(request, 'ordem/ordem_update.html', context)
 
+@login_required
 def ordem_delete(request, id):
     dados = Ordem.objects.get(id=id)
 
@@ -324,6 +332,7 @@ def ordem_delete(request, id):
     else:
         return render(request, 'ordem/ordem_delete.html', {'dados': dados})
 
+@login_required
 def ordem_consultar(request, id):
     dados = Ordem.objects.get(id=id)
     form = OrdemConsultarForm(request.POST or None, instance=dados)
@@ -338,7 +347,7 @@ def ordem_consultar(request, id):
 
 #------ VIEWS do Almoxarifado ----------------------------
 
-
+@login_required
 def almoxarifado(request):
     dados = Almoxarifado.objects.all()
     context = {
@@ -346,7 +355,7 @@ def almoxarifado(request):
     }
     return render(request, 'ordem/almoxarifado.html', context)
 
-
+@login_required
 def almoxarifado_add(request):
     if request.method == 'POST':
         form = AlmoxarifadoForm(request.POST)
@@ -360,6 +369,7 @@ def almoxarifado_add(request):
     }
     return render(request, 'ordem/almoxarifado_add.html', context)
 
+@login_required
 def almoxarifado_update(request, id):
     dados = Almoxarifado.objects.get(id=id)
     form = AlmoxarifadoForm(request.POST or None, instance=dados)
@@ -376,7 +386,7 @@ def almoxarifado_update(request, id):
     else:
         return render(request, 'ordem/almoxarifado_update.html', context)
 
-
+@login_required
 def almoxarifado_delete(request, id):
     dados = Almoxarifado.objects.get(id=id)
 
@@ -387,6 +397,7 @@ def almoxarifado_delete(request, id):
         return render(request, 'ordem/almoxarifado_delete.html', {'dados': dados})
 
 
+@login_required
 def adicionar_peca(request):
     form = AlmoxarifadoForm(request.POST)
     return render(request, 'ordem/adicionar_peca.html', {'form': form})
