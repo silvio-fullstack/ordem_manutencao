@@ -24,11 +24,24 @@
 
 <body class=" app-core model-manutencao change-list" data-admin-utc-offset="-10800">   
   <!-- Container -->
-  <div id="container">
-    <!-- Header -->
-    {% block header %}
-
-    {% endblock %}
+    <div id="container">
+      <!-- Header -->
+      <div id="header">
+        <div id="branding">
+          <h1 id="site-name">
+            <a href="/admin/">Gestão de Manutenção</a>
+          </h1>
+        </div>
+        <div id="user-tools">
+          Bem-vindo(a),
+          {% if user.is_authenticated %}
+            <strong>{{ user }}</strong>.
+          {% endif %}
+          <a href="/">Ver o site</a> /
+          <a href="/admin/password_change/">Alterar senha</a> /
+          <a href="/admin/logout/">Encerrar sessão</a>
+        </div>
+    </div>
     <!-- END Header -->
     <div class="breadcrumbs">
       {% block breadcrumbs %}

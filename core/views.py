@@ -5,10 +5,13 @@ from datetime import datetime
 from django.contrib.auth.models import User
 
 # --- VIEWS DOS MANUTENTORES ------------------------
+
 def manutentor(request):
     dados = Manutencao.objects.all()
+
     context = {
         'dados': dados,
+
     }
     return render(request, 'ordem/manutentor.html', context)
 
@@ -20,17 +23,21 @@ def manutentor_add(request):
             form.save()
             return redirect('manutencao')
     form = ManutencaoForm()
+
     context = {
         'form': form,
+
     }
     return render(request, 'ordem/manutentor_add.html', context)
 
 def manutentor_update(request, id):
     dados = Manutencao.objects.get(id=id)
     form = ManutencaoForm(request.POST or None, instance=dados)
+
     context = {
         'form': form,
         'dados': dados,
+
     }
 
     if request.method == 'POST':
@@ -43,6 +50,7 @@ def manutentor_update(request, id):
 
 def manutentor_delete(request, id):
     dados = Manutencao.objects.get(id=id)
+ 
 
     if request.method == 'POST':
         dados.delete()
@@ -57,6 +65,7 @@ def equipamentos(request):
     dados = Equipamentos.objects.all()
     context = {
         'dados': dados,
+
     }
     return render(request, 'ordem/equipamento.html', context)
 
@@ -68,17 +77,21 @@ def equipamentos_add(request):
             form.save()
             return redirect('equipamento')
     form = EquipamentosForm()
+
     context = {
         'form': form,
+
     }
     return render(request, 'ordem/equipamento_add.html', context)
 
 def equipamentos_update(request, id):
     dados = Equipamentos.objects.get(id=id)
     form = EquipamentosForm(request.POST or None, instance=dados)
+
     context = {
         'dados': dados,
         'form': form,
+
     }
 
     if request.method == 'POST':
@@ -92,6 +105,7 @@ def equipamentos_update(request, id):
 def equipamentos_delete(request, id):
     dados = Equipamentos.objects.get(id=id)
 
+
     if request.method == 'POST':
         dados.delete()
         return redirect('equipamento')
@@ -104,6 +118,7 @@ def ordem(request):
     dados = Ordem.objects.all()
     context = {
         'dados': dados,
+
     }
     return render(request, 'ordem/ordem.html', context)
 
@@ -114,6 +129,7 @@ def ordem_add(request):
     context = {
         'dados': dados,
         'form': form,
+
     }
     if request.method == 'POST':
         form = OrdemForm(request.POST)
@@ -132,6 +148,7 @@ def ordem_fechar(request, id):
         'dados': dados,
         'form': form,
         'almox': almox,
+
     }
 
     if request.method == 'POST':
@@ -154,6 +171,7 @@ def ordem_abrir(request, id):
     context = {
         'dados': dados,
         'form': form,
+
     }
 
     if request.method == 'POST':
@@ -180,6 +198,7 @@ def ordem_update(request, id):
         'dados': dados,
         'form': form,
         'almox': almox,
+
     }
 
     if request.method == 'POST' and '_save' in request.POST:
@@ -204,6 +223,7 @@ def ordem_consultar(request, id):
     context = {
         'dados': dados,
         'form': form,
+
     }
 
     return render(request, 'ordem/ordem_consultar.html', context)
@@ -229,6 +249,7 @@ def almoxarifado_add(request):
     form = AlmoxarifadoForm()
     context = {
         'form': form,
+
     }
     return render(request, 'ordem/almoxarifado_add.html', context)
 
@@ -238,6 +259,7 @@ def almoxarifado_update(request, id):
     context = {
         'dados': dados,
         'form': form,
+
     }
 
     if request.method == 'POST':
