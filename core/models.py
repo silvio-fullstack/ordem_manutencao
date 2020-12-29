@@ -116,9 +116,7 @@ class Ordem(models.Model):
     Abertura_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Inicio_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Termino_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
-<<<<<<< HEAD
     Pecas = models.ManyToManyField(Almoxarifado, blank=True)
-=======
     Pecas = models.ManyToManyField(Almoxarifado, null=True, blank=True)
 
 class Book(models.Model):
@@ -131,4 +129,3 @@ class Book(models.Model):
 
     def __str__(self):
         return self.name
->>>>>>> 8563dbb80e1f41c9aad5ddb58111d330bab06458

@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
 from .models import Manutencao, Equipamentos, Ordem, Almoxarifado
 from .forms import ManutencaoForm, EquipamentosForm, OrdemForm, FecharOrdemForm, AbrirOrdemForm, OrdemConsultarForm, AlmoxarifadoForm, AbrirOrdemForm, UpdateForm
 from datetime import datetime
 from django.contrib.auth.models import User
-=======
 from .models import (
     Manutencao, 
     Equipamentos, 
@@ -82,7 +80,6 @@ class BookDeleteView(DeleteView):
 
 
 # --------------------------------------------------
->>>>>>> 8563dbb80e1f41c9aad5ddb58111d330bab06458
 
 # --- VIEWS DOS MANUTENTORES ------------------------
 
