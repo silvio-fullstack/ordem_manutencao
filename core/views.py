@@ -23,18 +23,12 @@ from .forms import (
 from datetime import datetime
 from django.contrib import messages
 from django.views.generic import TemplateView, View, ListView
-
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
 from django.views.generic.edit import CreateView
-
 from django.views.generic.detail import DetailView
-
 from django.views.generic.edit import UpdateView
-
 from django.views.generic.edit import DeleteView
-
 from django.urls import reverse_lazy
 
 
@@ -190,7 +184,7 @@ def equipamentos_delete(request, id):
         return render(request, 'ordem/equipamento_delete.html', {'dados': dados})
 
 #--- VIEWS ---- ORDEM DE SERVICO ----------------------------------------------
-
+@login_required()
 def ordem(request):
     dados = Ordem.objects.all()
     context = {

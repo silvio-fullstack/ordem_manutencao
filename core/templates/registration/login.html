@@ -1,0 +1,30 @@
+
+{% extends 'ordem/base.html' %}
+
+{% block breadcrumbs %}
+    <a href="/">Início</a>
+    &rsaquo; Login
+{% endblock %}
+
+{% block main %}
+
+<div id="content-main">
+    <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+        <div class="form-row">
+            <label class="required" for="id_username">{{ form.username.label_tag }}</label> 
+            <input type="text" name="username" autofocus autocapitalize="none" maxlength="150" required id="id_username">
+        </div>
+        <div class="form-row">
+            <label class="required" for="id_password">{{ form.password.label_tag }}</label> 
+            <input type="password" name="password" required id="id_password">
+
+            <input type="hidden" name="next" value="{{ next }}">
+        </div>
+        <div class="submit-row">
+            <input type="submit" value="Login">
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -14,9 +14,11 @@
         <div id="content-main">
           <ul class="object-tools">
             <li>
-              <a href="{% url 'ordem_add' %}" class="addlink">
-                Adicionar Ordem
-              </a>
+              {% if user.is_staff %}
+                <a href="{% url 'ordem_add' %}" class="addlink">
+                  Adicionar Ordem
+                </a>
+              {% endif %}
             </li>
           </ul>
           <div class="module" id="changelist">

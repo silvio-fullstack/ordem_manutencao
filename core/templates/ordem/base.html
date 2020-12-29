@@ -29,17 +29,19 @@
       <div id="header">
         <div id="branding">
           <h1 id="site-name">
-            <a href="/admin/">Gestão de Manutenção</a>
+            <a href="/">Gestão de Manutenção</a>
           </h1>
         </div>
         <div id="user-tools">
-          Bem-vindo(a),
           {% if user.is_authenticated %}
+            Bem-vindo(a),
             <strong>{{ user }}</strong>.
+            <a href="{% url 'logout' %}">Encerrar sessão</a>
+          {% else %}
+            <a href="{% url 'login' %}">Login</a> /
           {% endif %}
-          <a href="/">Ver o site</a> /
-          <a href="/admin/password_change/">Alterar senha</a> /
-          <a href="/admin/logout/">Encerrar sessão</a>
+
+          
         </div>
     </div>
     <!-- END Header -->
