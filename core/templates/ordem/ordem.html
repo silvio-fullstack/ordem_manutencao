@@ -156,13 +156,16 @@
                       {% endfor %}
                     </tbody>
                   </table>
-                  <p class="paginator">
-                    {% if dados.count == 1 %}
-                    <span>{{ dados.count }} > Ordem</span>
-                    {% else %}
-                      <span>{{ dados.count }} > Ordens</span>
-                    {% endif %}
-                  </p>
+
+<!--
+  {% if dados.count == 1 %}
+    <span>{{ dados.count }} > Ordem</span>
+  {% else %}
+    <span>{{ dados.count }} > Ordens</span>
+  {% endif %}
+-->                
+                  {% include "ordem/pagination.html" %} 
+
                 </div>
               </form>
             </div>
@@ -176,4 +179,5 @@
       </div>
     </div>
   </div>
+
 {% endblock %}

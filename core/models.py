@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Base(models.Model):
     create = models.DateTimeField(auto_now_add=True)
@@ -88,7 +89,7 @@ class Ordem(models.Model):
     ]
 
     Modificado = models.DateTimeField(auto_now_add=True)
-    Solicitante = models.CharField(max_length=50, help_text='Solicitante da Ordem')
+    Solicitante = models.ForeignKey(User, on_delete=models.CASCADE)
     Equipamento = models.ForeignKey(Equipamentos, on_delete=models.CASCADE)
     Tipo_Servico = models.CharField(
         verbose_name='Tipo do Serviço', 

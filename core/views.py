@@ -190,18 +190,55 @@ def equipamentos_delete(request, id):
         return render(request, 'ordem/equipamento_delete.html', {'dados': dados})
 
 #--- VIEWS ---- ORDEM DE SERVICO ----------------------------------------------
+
+"""
+def listing(request):
+    contact_list = Contact.objects.all()
+    paginator = Paginator(contact_list, 25) # Show 25 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'list.html', {'page_obj': page_obj})
+
+context = super(BookListView, self).get_context_data(**kwargs)
+        books = self.get_queryset()
+        page = self.request.GET.get('page')
+        paginator = Paginator(books, self.paginate_by)
+        try:
+            books = paginator.page(page)
+        except PageNotAnInteger:
+            books = paginator.page(1)
+        except EmptyPage:
+            books = paginator.page(paginator.num_pages)
+        context['books'] = books
+        return context
+
+"""
+
 @login_required
 def ordem(request):
     dados = Ordem.objects.all()
+    paginate_by = 8
+    paginator = Paginator(dados, paginate_by)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    try:
+        dados = paginator.page(page_number)
+    except PageNotAnInteger:
+        dados = paginator.page(1)
+    except EmptyPage:
+        dados = paginator.page(paginator.page_number)
     context = {
         'dados': dados,
-
+        'page_obj': page_obj,
     }
     return render(request, 'ordem/ordem.html', context)
+
 
 @login_required
 def ordem_add(request):
     dados = Ordem.objects.all()
+    user = User.objects.all()
     form = OrdemForm()
     context = {
         'dados': dados,
@@ -209,6 +246,7 @@ def ordem_add(request):
 
     }
     if request.method == 'POST':
+        dados.Solicitante = user
         form = OrdemForm(request.POST)
         if form.is_valid():
             form.save()
