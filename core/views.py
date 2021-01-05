@@ -290,9 +290,9 @@ def ordem_salvar(request, id):
     if request.method == 'POST':
         if form.is_valid():
             if manut != dados.Manutentor:
-                dado = f'Alterado Manutentor de { manut } para { dados.Manutentor }'
+                dado = f'Alterado Manutentor :{ manut } p/ :{ dados.Manutentor }'
             elif func != dados.Estado:
-                dado = f'Alterado Funcionamento do Equipamento de { func } para { dados.Estado }'
+                dado = f'Alterado Funcionamento :{ func } p/ :{ dados.Estado }'
             else:
                 dado = 'Não teve alteração'
             now = datetime.now()
@@ -401,9 +401,7 @@ def ordem_consultar(request, id):
     context = {
         'dados': dados,
         'form': form,
-
         'event': event,
-
     }
 
     return render(request, 'ordem/ordem_consultar.html', context)

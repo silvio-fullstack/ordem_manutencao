@@ -6,12 +6,12 @@
 {% endblock %}
 
 {% block main %}
-<div class="main shifted" id="main">
-    <div class="content">
+<div class="" id="main">
+    <div class="">
       <!-- Content -->
-      <div id="content" class="flex">
+      <div id="content" class="">
         <p>Selecione uma ordem para edição</p>
-        <div id="content-main">
+        <div id="">
           <ul class="object-tools">
             <li>
               {% if user.is_staff %}
@@ -164,8 +164,10 @@
   {% else %}
     <span>{{ dados.count }} > Ordens</span>
   {% endif %}
+
+  {% include "ordem/pagination.html" %} 
 -->                
-                  {% include "ordem/pagination.html" %} 
+                  
 
                 </div>
               </form>
@@ -179,6 +181,7 @@
         </div>
       </div>
     </div>
-  </div>
 
+  </div>
+  
 {% endblock %}

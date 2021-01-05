@@ -60,7 +60,7 @@ class Almoxarifado(Base):
     Local = models.CharField(max_length=10, help_text="Local da Peça")
     Preco = models.FloatField(max_length=10, help_text="Valor da Peça")
     Qto = models.IntegerField(help_text="Quantidade de Peças em Estoque")
-    Minimo = models.CharField(max_length=2, help_text="Estoque Minimo")
+    Minimo = models.IntegerField(help_text="Estoque Minimo")
 
 
 class Ordem(models.Model):

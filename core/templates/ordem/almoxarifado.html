@@ -51,9 +51,13 @@
                     <tbody>
                       {% for dados in dados %}
                       <tr>
-                          {% if dados.Qto <= dados.Minimo %}
+                          {% if dados.Qto < dados.Minimo %}
                           <th class="">
                             <a href="{% url 'almoxarifado_update' dados.id %}" style="color: red;">{{ dados.Peca }}</a>
+                          </th>
+                          {% elif dados.Qto == dados.Minimo %}
+                          <th class="">
+                            <a href="{% url 'almoxarifado_update' dados.id %}" style="color: rgb(255, 196, 0);">{{ dados.Peca }}</a>
                           </th>
                           {% else %}
                           <th class="">
