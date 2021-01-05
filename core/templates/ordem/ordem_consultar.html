@@ -10,175 +10,27 @@
 {% block main %}
 
 <div class="main shifted" id="main">
-    <div class="content">
-      <div id="content" class="flex">
-        <div id="content-main">
-          <div class="module" id="changelist">
-            <div class="changelist-form-container">
-              <h2>Consultar Ordem de Número: {{ dados.id }}</h2>
-                <div class="container">
-                  <table id="result_list">
-                    <thead>
-
-<!--
-<div class="content">
-    <div id="content" class="colM">
-      <spam>Consultar Ordem de Número: {{ dados.id }}</spam>
-      <div id="content" class="colM">
-
-        </br>
-        </br>
-
-        <table id="result_list">
-          <thead>
--->
-            <tr>
-              <th scope="col"  class="">
-                <div class="text"><span>Equipamento</span></div>
-              </th>
-              <th scope="col"  class="">
-                <div class="text"><span>Setor</span></div>
-              </th>
-              <th scope="col"  class="">
-                <div class="text"><span>Solicitante</span></div>
-              </th>
-              <th scope="col"  class="">
-                <div class="text"><span>Aberto em:</span></div>
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-                <th class="">
-                  <a>{{ dados.Equipamento }}</a>
-                </th>
-                <th class="">
-                  <a>{{ dados.Setor }}</a>
-                </th>
-                <th class="">
-                  <a>{{ dados.Solicitante }}</a>
-                </th>
-                <th class="">
-                  <a>{{ dados.Modificado }}</a>
-                </th>
-            </tr>
-          </tbody>
-        </table>
-
-        </br>
-
-        <table id="result_list">
-          <thead>
-            <tr>
-              <th scope="col"  class="">
-                <div class="text"><span>Descrição</span></div>
-              </th>
-              <th scope="col"  class="">
-                <div class="text"><span>Manutentor</span></div>
-              </th>
-              <th scope="col"  class="">
-                <div class="text"><span>Estado</span></div>
-              </th>
-              <th scope="col"  class="">
-                <div class="text"><span>Situação</span></div>
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-                <th class="">
-                  <a>{{ dados.Descricao }}</a>
-                </th>
-                <th class="">
-                  <a>{{ dados.Manutentor }}</a>
-                </th>
-                <th class="">
-                  <a>{{ dados.Estado }}</a>
-                </th>
-                <th class="">
-                  <a>{{ dados.Situacao }}</a>
-                </th>
-            </tr>
-          </tbody>
-        </table>
-
-        </br>
-
-        <table id="result_list">
-          <thead>
-            <tr>
-              <th scope="col"  class="">
-                <div class="text"><span>Tipo de Serviço</span></div>
-              </th>
-              <th scope="col"  class="">
-                <div class="text"><span>Causa do Defeito</span></div>
-              </th>
-              <th scope="col"  class="">
-                <div class="text"><span>Serviço Realizado</span></div>
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-                <th class="">
-                  <a>{{ dados.Tipo_Servico }}</a>
-                </th>
-                <th class="">
-                  <a>{{ dados.Causa }}</a>
-                </th>
-                <th class="">
-                  <a>{{ dados.Realizado }}</a>
-                </th>
-            </tr>
-          </tbody>
-        </table>
-
-        </br>
-
-        <table id="result_list">
-          <thead>
-            <tr>
-              <th scope="col"  class="">
-                <div class="text"><span>Inicio de Manutenção</span></div>
-              </th>
-              <th scope="col"  class="">
-                <div class="text"><span>Termino de Manutenção</span></div>
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-                <th class="">
-                  <a>{{ dados.Inicio_servico }}</a>
-                </th>
-                <th class="">
-                  <a>{{ dados.Termino_servico }}</a>
-                </th>
-            </tr>
-          </tbody>
-        </table>
-        </br>
-
+  <div class="content">
+    <div id="content" class="flex">
+      <div id="content-main">
         <div class="module" id="changelist">
           <div class="changelist-form-container">
-            <h2>Lista de Eventos da Ordem : {{ dados.id }}</h2>
-            {% for ev in event %}
+            <h2>Consultar Ordem de Número: {{ dados.id }}</h2>
             <div class="container">
               <table id="result_list">
                 <thead>
                   <tr>
                     <th scope="col"  class="">
-                      <div class="text"><span>Nome do Evento</span></div>
+                      <div class="text"><span>Equipamento</span></div>
                     </th>
                     <th scope="col"  class="">
-                      <div class="text"><span>Data</span></div>
+                      <div class="text"><span>Setor</span></div>
                     </th>
                     <th scope="col"  class="">
-                      <div class="text"><span>Observação</span></div>
+                      <div class="text"><span>Solicitante</span></div>
+                    </th>
+                    <th scope="col"  class="">
+                      <div class="text"><span>Aberto em:</span></div>
                     </th>
                   </tr>
                 </thead>
@@ -186,35 +38,170 @@
                 <tbody>
                   <tr>
                       <th class="">
-                        <a>{{ ev.nome }}</a>
+                        <a>{{ dados.Equipamento }}</a>
                       </th>
                       <th class="">
-                        <a>{{ ev.data }}</a>
+                        <a>{{ dados.Setor }}</a>
                       </th>
                       <th class="">
-                        <a>{{ ev.obs }}</a>
+                        <a>{{ dados.Solicitante }}</a>
+                      </th>
+                      <th class="">
+                        <a>{{ dados.Modificado }}</a>
                       </th>
                   </tr>
                 </tbody>
               </table>
-              {% endfor %}
+
+              </br>
+
+              <table id="result_list">
+                <thead>
+                  <tr>
+                    <th scope="col"  class="">
+                      <div class="text"><span>Descrição</span></div>
+                    </th>
+                    <th scope="col"  class="">
+                      <div class="text"><span>Manutentor</span></div>
+                    </th>
+                    <th scope="col"  class="">
+                      <div class="text"><span>Estado</span></div>
+                    </th>
+                    <th scope="col"  class="">
+                      <div class="text"><span>Situação</span></div>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                      <th class="">
+                        <a>{{ dados.Descricao }}</a>
+                      </th>
+                      <th class="">
+                        <a>{{ dados.Manutentor }}</a>
+                      </th>
+                      <th class="">
+                        <a>{{ dados.Estado }}</a>
+                      </th>
+                      <th class="">
+                        <a>{{ dados.Situacao }}</a>
+                      </th>
+                  </tr>
+                </tbody>
+              </table>
+
+              </br>
+
+              <table id="result_list">
+                <thead>
+                  <tr>
+                    <th scope="col"  class="">
+                      <div class="text"><span>Tipo de Serviço</span></div>
+                    </th>
+                    <th scope="col"  class="">
+                      <div class="text"><span>Causa do Defeito</span></div>
+                    </th>
+                    <th scope="col"  class="">
+                      <div class="text"><span>Serviço Realizado</span></div>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                      <th class="">
+                        <a>{{ dados.Tipo_Servico }}</a>
+                      </th>
+                      <th class="">
+                        <a>{{ dados.Causa }}</a>
+                      </th>
+                      <th class="">
+                        <a>{{ dados.Realizado }}</a>
+                      </th>
+                  </tr>
+                </tbody>
+              </table>
+
+              </br>
+
+              <table id="result_list">
+                <thead>
+                  <tr>
+                    <th scope="col"  class="">
+                      <div class="text"><span>Inicio de Manutenção</span></div>
+                    </th>
+                    <th scope="col"  class="">
+                      <div class="text"><span>Termino de Manutenção</span></div>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                      <th class="">
+                        <a>{{ dados.Inicio_servico }}</a>
+                      </th>
+                      <th class="">
+                        <a>{{ dados.Termino_servico }}</a>
+                      </th>
+                  </tr>
+                </tbody>
+              </table>
+              </br>
+
+              <div class="module" id="changelist">
+                <div class="changelist-form-container">
+                  <h2>Lista de Eventos da Ordem : {{ dados.id }}</h2>
+                  {% for ev in event %}
+                  <div class="container">
+                    <table id="result_list">
+                      <thead>
+                        <tr>
+                          <th scope="col"  class="">
+                            <div class="text"><span>Nome do Evento</span></div>
+                          </th>
+                          <th scope="col"  class="">
+                            <div class="text"><span>Data</span></div>
+                          </th>
+                          <th scope="col"  class="">
+                            <div class="text"><span>Observação</span></div>
+                          </th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr>
+                            <th class="">
+                              <a>{{ ev.nome }}</a>
+                            </th>
+                            <th class="">
+                              <a>{{ ev.data }}</a>
+                            </th>
+                            <th class="">
+                              <a>{{ ev.obs }}</a>
+                            </th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  {% endfor %}
+                  <br class="clear">
+                  <div id="content-main">
+                    <div class="submit-row">
+                      <p class="deletelink-box">
+                        <a href="{% url 'ordem' %}" class="deletelink">Voltar</a>
+                      </p>
+                      <input type="submit" value="Imprimir" class="default" name="_save">
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-     </div>
       </div>
-    </div>
-    <div id="content-main">
-
-      <div class="submit-row">
-        <p class="deletelink-box">
-          <a href="{% url 'ordem' %}" class="deletelink">Voltar</a>
-        </p>
-        <input type="submit" value="Imprimir" class="default" name="_save">
-      </div>
-    </div>
       <br class="clear">
+    </div>
   </div>
-</div>
-  
+</div>  
 {% endblock %}

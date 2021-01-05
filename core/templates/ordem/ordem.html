@@ -67,11 +67,8 @@
                                 {% if dados.Situacao == 'concluido' %}
                                   <a href="{% url 'ordem_salvar' dados.id %}" style="color: rgb(255, 230, 0);">{{ dados.Equipamento }}</a>
                                 {% else %}
-<<<<<<< HEAD
                                   <a href="{% url 'ordem_salvar' dados.id %}" style="color: rgba(255, 0, 0, 0.171);">{{ dados.Equipamento }}</a>
-=======
-                                  <a href="{% url 'ordem_update' dados.id %}" style="color: red;">{{ dados.Equipamento }}</a>
->>>>>>> ddc96c82bc0a0fa839c13f02ee69442e22e59c58
+
                                 {% endif %}
                               {% endif %}
 
