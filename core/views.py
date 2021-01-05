@@ -5,6 +5,7 @@ from .models import (
     Ordem, 
     Almoxarifado,
     Book,
+    Eventos,
 )
 from .forms import (
     ManutencaoForm, 
@@ -15,6 +16,7 @@ from .forms import (
     OrdemConsultarForm, 
     AlmoxarifadoForm, 
     AbrirOrdemForm,
+    OrdemAlterar,
 )
 from datetime import datetime
 from django.contrib import messages
@@ -216,8 +218,11 @@ def ordem_visualizar(request, id):
 
 def ordem_salvar(request, id):
     dados = Ordem.objects.get(id=id)
+    dados.Obs=None
+    manut = dados.Manutentor
+    func = dados.Estado
     almox = Almoxarifado.objects.all()
-    form = OrdemConsultarForm(request.POST or None, instance=dados)
+    form = OrdemAlterar(request.POST or None, instance=dados)
     context = {
         'dados': dados,
         'form': form,
@@ -226,9 +231,16 @@ def ordem_salvar(request, id):
 
     if request.method == 'POST':
         if form.is_valid():
+            if manut != dados.Manutentor:
+                dado = f'Alterado Manutentor de { manut } para { dados.Manutentor }'
+            elif func != dados.Estado:
+                dado = f'Alterado Funcionamento do Equipamento de { func } para { dados.Estado }'
+            else:
+                dado = 'Não teve alteração'
+            now = datetime.now()
+            Eventos.objects.create(po=dados, nome=dado, data=now, obs=dados.Obs)
             form.save()
             return redirect('ordem')
-            messages.success(request, 'DEU CERTO')
     else:
         return render(request, 'ordem/ordem_visualizar.html', context)   
 
@@ -265,10 +277,16 @@ def ordem_abrir(request, id):
 
     if request.method == 'POST':
         now = datetime.now()
-        dados.Situacao = 'atendimento'
-        dados.Inicio_servico = now
+        print(dados.Manutentor)
         if form.is_valid():
-            form.save()
+            if dados.Manutentor == None:
+                print('NONE')
+            else:
+                dados.Situacao = 'atendimento'
+                dados.Inicio_servico = now
+                print('ELSE')
+                form.save()
+
             return redirect('ordem')
     else:
         return render(request, 'ordem/ordem_abrir.html', context)
@@ -301,10 +319,12 @@ def ordem_delete(request, id):
 
 def ordem_consultar(request, id):
     dados = Ordem.objects.get(id=id)
+    event = Eventos.objects.filter(po=dados)
     form = OrdemConsultarForm(request.POST or None, instance=dados)
     context = {
         'dados': dados,
         'form': form,
+        'event': event,
     }
 
     return render(request, 'ordem/ordem_consultar.html', context)

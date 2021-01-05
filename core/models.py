@@ -4,7 +4,6 @@ class Base(models.Model):
     create = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
 
-
 class Manutencao(Base):
     funcao_choices = [
         ('eletric', 'Eletricista'),
@@ -38,7 +37,6 @@ class AbrirOrdem(models.Model):
         ('concluido', 'Serviço Concluido'),
         ('andamento', 'Serviço em Andamento'),
         ('cancelado', 'Serviço Cancelado'),
-        ('suspenso', 'Serviço Suspenso'),
         ('aguardando', 'Arguardando Manutenção'),
         ('peca', 'Aguardando Peça'),
     ]
@@ -60,7 +58,7 @@ class Almoxarifado(Base):
     Rua = models.CharField(max_length=10, help_text="Rua da Peça")
     Local = models.CharField(max_length=10, help_text="Local da Peça")
     Preco = models.FloatField(max_length=10, help_text="Valor da Peça")
-    Qto = models.IntegerField(max_length=2, help_text="Quantidade de Peças em Estoque")
+    Qto = models.IntegerField(help_text="Quantidade de Peças em Estoque")
     Minimo = models.CharField(max_length=2, help_text="Estoque Minimo")
 
 
@@ -77,8 +75,6 @@ class Ordem(models.Model):
     estado_choices = [
         ('Parado', 'Equipamento Parado'),
         ('Funcionando', 'Equipamento Funcionando'),
-        ('Programado', 'Serviço Programado'),
-        ('Melhoria', 'Serviço de Melhoria'),
     ]
     tipo_choices = [
         ('Corretivo', 'Serviço Corretivo'),
@@ -97,6 +93,7 @@ class Ordem(models.Model):
         default='Corretivo',     
     )
     Descricao = models.TextField()
+    Obs = models.TextField()
     Setor = models.CharField(max_length=50, help_text='Setor do Serviço')
     Causa = models.TextField(help_text='Causa do Problema', null=True, blank=True)
     Realizado = models.TextField(help_text='Serviço Realizado', null=True, blank=True)
@@ -116,7 +113,8 @@ class Ordem(models.Model):
     Abertura_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Inicio_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Termino_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
-    Pecas = models.ManyToManyField(Almoxarifado, null=True, blank=True)
+    Pecas = models.ManyToManyField(Almoxarifado, blank=True)
+
 
 class Book(models.Model):
 
@@ -128,3 +126,9 @@ class Book(models.Model):
 
     def __str__(self):
         return self.name
+
+class Eventos(models.Model):
+    nome = models.CharField(max_length=20, null=True, blank=True)
+    data = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
+    obs = models.TextField()
+    po = models.ForeignKey(Ordem, on_delete=models.PROTECT)

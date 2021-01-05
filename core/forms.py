@@ -49,6 +49,16 @@ class OrdemConsultarForm(ModelForm):
         fields = '__all__'
 
 
+class OrdemAlterar(ModelForm):
+    class Meta:
+        model = Ordem
+        fields = {
+            'Manutentor',
+            'Estado',
+            'Obs',
+        }
+
+
 class AlmoxarifadoForm(ModelForm):
     class Meta:
         model = Almoxarifado

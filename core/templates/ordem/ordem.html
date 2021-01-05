@@ -63,9 +63,9 @@
                                   <a href="{% url 'ordem_abrir' dados.id %}" style="color:red;">{{ dados.Equipamento }}</a>
                               {% else %}
                                 {% if dados.Situacao == 'concluido' %}
-                                  <a href="{% url 'ordem_consultar' dados.id %}" style="color: rgb(255, 230, 0);">{{ dados.Equipamento }}</a>
+                                  <a href="{% url 'ordem_salvar' dados.id %}" style="color: rgb(255, 230, 0);">{{ dados.Equipamento }}</a>
                                 {% else %}
-                                  <a href="{% url 'ordem_fechar' dados.id %}" style="color: red;">{{ dados.Equipamento }}</a>
+                                  <a href="{% url 'ordem_salvar' dados.id %}" style="color: rgba(255, 0, 0, 0.171);">{{ dados.Equipamento }}</a>
                                 {% endif %}
                               {% endif %}
 
@@ -78,7 +78,7 @@
                                 <a href="{% url 'ordem_abrir' dados.id %}">{{ dados.Equipamento }}</a>
                             {% else %}
                               {% if dados.Situacao == 'concluido' %}
-                                <a href="{% url 'ordem_consultar' dados.id %}" style="color: green;">{{ dados.Equipamento }}</a>
+                                <a href="{% url 'ordem_consultar' dados.id %}" style="color: rgba(0, 128, 0, 0.404);">{{ dados.Equipamento }}</a>
                               {% else %}
                                 <a href="{% url 'ordem_fechar' dados.id %}" style="color: green;">{{ dados.Equipamento }}</a>
                               {% endif %}
