@@ -339,7 +339,6 @@ def ordem_abrir(request, id):
 
     if request.method == 'POST':
         now = datetime.now()
-<<<<<<< HEAD
         print(dados.Manutentor)
         if form.is_valid():
             if dados.Manutentor == None:
@@ -351,7 +350,6 @@ def ordem_abrir(request, id):
                 form.save()
 
             return redirect('ordem')
-=======
         if form.is_valid():
             form.save()
 
@@ -363,7 +361,6 @@ def ordem_abrir(request, id):
             form.save()
 
         return redirect('ordem')
->>>>>>> ddc96c82bc0a0fa839c13f02ee69442e22e59c58
     else:
         return render(request, 'ordem/ordem_abrir.html', context)
 
@@ -404,11 +401,9 @@ def ordem_consultar(request, id):
     context = {
         'dados': dados,
         'form': form,
-<<<<<<< HEAD
-        'event': event,
-=======
 
->>>>>>> ddc96c82bc0a0fa839c13f02ee69442e22e59c58
+        'event': event,
+
     }
 
     return render(request, 'ordem/ordem_consultar.html', context)
