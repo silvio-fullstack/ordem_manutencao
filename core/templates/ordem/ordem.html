@@ -10,13 +10,15 @@
     <div class="content">
       <!-- Content -->
       <div id="content" class="flex">
-        <p>Selecione uma Ordem para modificar</p>
+        <p>Selecione uma ordem para edição</p>
         <div id="content-main">
           <ul class="object-tools">
             <li>
-              <a href="{% url 'ordem_add' %}" class="addlink">
-                Adicionar Ordem
-              </a>
+              {% if user.is_staff %}
+                <a href="{% url 'ordem_add' %}" class="addlink">
+                  Adicionar Ordem
+                </a>
+              {% endif %}
             </li>
           </ul>
           <div class="module" id="changelist">
@@ -43,7 +45,7 @@
                           <div class="text"><span>Manutentor</span></div>
                         </th>
                         <th scope="col"  class="">
-                          <div class="text"><span>Status</span></div>
+                          <div class="text"><span>Situação</span></div>
                         </th>
                         <th scope="col"  class="">
                           <div class="text"><span>Estado</span></div>
@@ -65,7 +67,11 @@
                                 {% if dados.Situacao == 'concluido' %}
                                   <a href="{% url 'ordem_salvar' dados.id %}" style="color: rgb(255, 230, 0);">{{ dados.Equipamento }}</a>
                                 {% else %}
+<<<<<<< HEAD
                                   <a href="{% url 'ordem_salvar' dados.id %}" style="color: rgba(255, 0, 0, 0.171);">{{ dados.Equipamento }}</a>
+=======
+                                  <a href="{% url 'ordem_update' dados.id %}" style="color: red;">{{ dados.Equipamento }}</a>
+>>>>>>> ddc96c82bc0a0fa839c13f02ee69442e22e59c58
                                 {% endif %}
                               {% endif %}
 
@@ -80,7 +86,7 @@
                               {% if dados.Situacao == 'concluido' %}
                                 <a href="{% url 'ordem_consultar' dados.id %}" style="color: rgba(0, 128, 0, 0.404);">{{ dados.Equipamento }}</a>
                               {% else %}
-                                <a href="{% url 'ordem_fechar' dados.id %}" style="color: green;">{{ dados.Equipamento }}</a>
+                                <a href="{% url 'ordem_update' dados.id %}" style="color: green;">{{ dados.Equipamento }}</a>
                               {% endif %}
 
                             {% endif %}
@@ -101,7 +107,7 @@
                               {% if dados.Situacao == 'concluido' %}
                                 <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
                               {% else %}
-                                <a href="{% url 'ordem_fechar' dados.id %}">{{ dados.Equipamento }}</a>
+                                <a href="{% url 'ordem_update' dados.id %}">{{ dados.Equipamento }}</a>
                               {% endif %}
                             {% endif %}
                           </th>
@@ -120,7 +126,7 @@
                               {% if dados.Situacao == 'concluido' %}
                                 <a href="{% url 'ordem_consultar' dados.id %}">{{ dados.Equipamento }}</a>
                               {% else %}
-                                <a href="{% url 'ordem_fechar' dados.id %}">{{ dados.Equipamento }}</a>
+                                <a href="{% url 'ordem_update' dados.id %}">{{ dados.Equipamento }}</a>
                               {% endif %}
 
                             {% endif %}
@@ -154,13 +160,16 @@
                       {% endfor %}
                     </tbody>
                   </table>
-                  <p class="paginator">
-                    {% if dados.count == 1 %}
-                    <span>{{ dados.count }} > Ordem</span>
-                    {% else %}
-                      <span>{{ dados.count }} > Ordens</span>
-                    {% endif %}
-                  </p>
+
+<!--
+  {% if dados.count == 1 %}
+    <span>{{ dados.count }} > Ordem</span>
+  {% else %}
+    <span>{{ dados.count }} > Ordens</span>
+  {% endif %}
+-->                
+                  {% include "ordem/pagination.html" %} 
+
                 </div>
               </form>
             </div>
@@ -174,4 +183,5 @@
       </div>
     </div>
   </div>
+
 {% endblock %}

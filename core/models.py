@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Base(models.Model):
     create = models.DateTimeField(auto_now_add=True)
@@ -84,7 +85,7 @@ class Ordem(models.Model):
     ]
 
     Modificado = models.DateTimeField(auto_now_add=True)
-    Solicitante = models.CharField(max_length=50, help_text='Solicitante da Ordem')
+    Solicitante = models.ForeignKey(User, on_delete=models.CASCADE)
     Equipamento = models.ForeignKey(Equipamentos, on_delete=models.CASCADE)
     Tipo_Servico = models.CharField(
         verbose_name='Tipo do Serviço', 
@@ -114,7 +115,11 @@ class Ordem(models.Model):
     Inicio_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Termino_servico = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     Pecas = models.ManyToManyField(Almoxarifado, blank=True)
+<<<<<<< HEAD
 
+=======
+    Pecas = models.ManyToManyField(Almoxarifado, null=True, blank=True)
+>>>>>>> ddc96c82bc0a0fa839c13f02ee69442e22e59c58
 
 class Book(models.Model):
 

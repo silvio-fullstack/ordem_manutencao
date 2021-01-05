@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="pt-br" >
 
+<html lang="pt-br" >
 <head>
   <title>Sistema de Gestão</title>
   <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
@@ -24,24 +24,27 @@
 
 <body class=" app-core model-manutencao change-list" data-admin-utc-offset="-10800">   
   <!-- Container -->
-  <div id="container">
-    <!-- Header -->
-    <div id="header">
-      <div id="branding">
-        <h1 id="site-name">
-          <a href="/admin/">Gestão de Manutenção</a>
-        </h1>
-      </div>
-      <div id="user-tools">
-        Bem-vindo(a),
-        <strong>silvio</strong>.
-        <a href="/">Ver o site</a> /
-        <a href="/admin/password_change/">Alterar senha</a> /
-        <a href="/admin/logout/">Encerrar sessão</a>
-      </div>
+    <div id="container">
+      <!-- Header -->
+      <div id="header">
+        <div id="branding">
+          <h1 id="site-name">
+            <a href="/">Gestão de Manutenção</a>
+          </h1>
+        </div>
+        <div id="user-tools">
+          {% if user.is_authenticated %}
+            Bem-vindo(a),
+            <strong>{{ user }}</strong>.
+            <a href="{% url 'logout' %}">Encerrar sessão</a>
+          {% else %}
+            <a href="{% url 'login' %}">Login</a> /
+          {% endif %}
+
+          
+        </div>
     </div>
     <!-- END Header -->
-
     <div class="breadcrumbs">
       {% block breadcrumbs %}
 

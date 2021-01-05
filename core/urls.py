@@ -22,7 +22,6 @@ from .views import (
     ordem_salvar, 
     ordem_visualizar,
     )
-
 from core.views import MeuView, BookListView, BookCreateView, BookDetailView, BookUpdateView, BookDeleteView
 
 urlpatterns = [

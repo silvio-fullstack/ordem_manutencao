@@ -11,9 +11,14 @@
 <div class="content">
     <div id="content" class="colM">
       <spam>Atualizar Equipamento {{ dados.Nome }}</spam>
+      </br>
       <div id="content-main">
         <form method="post" id="manutencao_form" novalidate>
           <fieldset class="module aligned ">
+          </br>
+          <spam>Descricao do Defeito : {{ dados.Descricao }}</spam>
+          </br>
+          </br>
             <!-- Aqui OHHH -->
             {{ form.as_p }}
             <!-- Até Aqui -->
@@ -22,9 +27,11 @@
           <div>
             <div class="submit-row">
               <p class="deletelink-box">
-                <a href="{% url 'ordem_delete' dados.id %}" class="deletelink">Apagar</a>
+                <a href="{% url 'ordem_fechar' dados.id %}" class="deletelink">Fechar Ordem</a>
               </p>
               <input type="submit" value="Salvar" class="default" name="_save">
+              <input type="submit" value="Adicionar Peças" name="_addanother">
+              <input type="submit" value="Salvar e continuar editando" name="_continue">
             </div>
             <script id="django-admin-form-add-constants"
               src="/static/admin/js/change_form.js"
