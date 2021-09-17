@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from .models import Manutencao, Equipamentos, Ordem, Almoxarifado
+from .models import Manutencao, Equipamentos, Ordem, Almoxarifado, Maquinas
 
 
 class ManutencaoForm(ModelForm):
@@ -12,6 +12,11 @@ class ManutencaoForm(ModelForm):
 class EquipamentosForm(ModelForm):
     class Meta:
         model = Equipamentos
+        fields = '__all__'
+
+class MaquinaForm(ModelForm):
+    class Meta:
+        model = Maquinas
         fields = '__all__'
 
 class OrdemForm(ModelForm):

@@ -1,0 +1,43 @@
+{% extends 'ordem/base.html' %}
+
+{% block breadcrumbs %}
+    <a href="#">Início</a>
+    &rsaquo; 
+    <a href="{% url 'maquinas' %}">Equipamento</a>
+    &rsaquo; Adicionar
+{% endblock %}
+
+{% block main %}
+
+<div class="content">
+  <div id="content" class="colM">
+    <span>Adicionar Equipamento</span>
+    <div id="content-main">
+      <form method="post" id="maquina_form" novalidate>
+        <fieldset class="module aligned ">
+          <!-- Aqui OHHH -->
+          {{ form.as_p }}
+          <!-- Até Aqui -->
+        </fieldset>
+        {% csrf_token %}
+        <div>
+          <div class="submit-row">
+            <input type="submit" value="Salvar" class="default" name="_save">
+          </div>
+          <script id="django-admin-form-add-constants"
+            src="/static/admin/js/change_form.js"
+            data-model-name="manutencao"
+            async>
+          </script>
+          <script id="django-admin-prepopulated-fields-constants"
+            src="/static/admin/js/prepopulate_init.js"
+            data-prepopulated-fields="[]">
+          </script>
+        </div>
+      </form>
+    </div>
+    <br class="clear">
+  </div>
+</div>
+
+{% endblock %}

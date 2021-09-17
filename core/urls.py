@@ -21,6 +21,10 @@ from .views import (
     adicionar_peca, 
     ordem_salvar, 
     ordem_visualizar,
+    maquinas,
+    maquinas_add,
+    maquinas_update,
+    maquinas_delete,
     )
 from core.views import MeuView, BookListView, BookCreateView, BookDetailView, BookUpdateView, BookDeleteView
 
@@ -39,12 +43,20 @@ urlpatterns = [
     path('manutentor_update/<int:id>', manutentor_update, name='manutentor_update'),
     path('manutentor_delete/<int:id>', manutentor_delete, name='manutentor_delete'),
     # --------------------------------------------------------------------------------
-    # Equipamentos CRUD -------------------------------------------------------------
+    # Equipamento CRUD -------------------------------------------------------------
     path('equipamento', equipamentos, name='equipamento'),
     path('equipamento_add', equipamentos_add, name='equipamento_add'),
     path('equipamento_update/<int:id>', equipamentos_update, name='equipamento_update'),
     path('equipamento_delete/<int:id>', equipamentos_delete, name='equipamento_delete'),   
     #--------------------------------------------------------------------------------
+
+    # Maquinas  ------------------------------------------------------------------
+    path('maquinas', maquinas, name='maquinas'),
+    path('maquinas_add', maquinas_add, name='maquinas_add'),
+    path('maquinas_update/<int:id>', maquinas_update, name='maquinas_update'),
+    path('maquinas_delete/<int:id>', maquinas_delete, name='maquinas_delete'),   
+
+    # ------------------------------------------------------------------------------
     # Ordems CRUD -------------------------------------------------------------
     path('ordem/', ordem, name='ordem'),
     path('ordem_add/', ordem_add, name='ordem_add'),

@@ -1,0 +1,90 @@
+{% extends 'ordem/base.html' %}
+
+{% block breadcrumbs %}
+    <a href="#">Início</a>
+    &rsaquo; Maquinas
+{% endblock %}
+
+{% block main %}
+<div class="main shifted" id="main">
+    <div class="content">
+      <!-- Content -->
+      <div id="content" class="flex">
+        <p>Selecione um equipamento abrir Ordem de Serviço</p>
+        <div id="content-main">
+          <ul class="object-tools">
+            <li>
+              <a href="{% url 'maquinas' %}" class="addlink">
+                --------------
+              </a>
+            </li>
+          </ul>
+          <div class="module" id="changelist">
+            <div class="changelist-form-container">
+              <form id="changelist-form" method="post" novalidate>
+                {% csrf_token %}
+                <div class="container">
+                  <table id="result_list">
+                    <thead>
+                      <tr>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Equipamento</span></div>
+                        </th>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Estado do Equipamento</span></div>
+                        </th>
+                        <th scope="col"  class="">
+                          <div class="text"><span>Ordem Aberta</span></div>
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {% for dados in dados %}
+                      <tr>
+                          <th class="">
+                            {% if dados.Estado == "Funcionando" %}
+                              <a style="color: green" href="{% url 'ordem_add'%}">{{ dados.Nome }}</a>
+                            {% else %}
+                              <a style="color: red" href="{% url 'ordem_add'%}">{{ dados.Nome }}</a>
+                            {% endif %}
+                          </th>
+                          <th class="">
+                            {% if dados.Estado == "Funcionando" %}
+                              <a style="color: green">{{ dados.Estado }}</a>
+                            {% else %}
+                              <a style="color: red">{{ dados.Estado }}</a>
+                            {% endif %}
+                          </th>
+                          <th class="">
+                            {% if dados.Ordem == none %}
+                              <a>-----------</a>
+                            {% else %}
+                              <a>{{ dados.Ordem }}</a>
+                            {% endif %}
+                          </th>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  <p class="paginator">
+                    {% if dados.count == 1 %}
+                    <span>{{ dados.count }} > Equipamento</span>
+                    {% else %}
+                      <span>{{ dados.count }} > Equipamentos</span>
+                    {% endif %}
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <br class="clear">
+        </div>
+          <!-- END Content -->
+          <div id="footer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

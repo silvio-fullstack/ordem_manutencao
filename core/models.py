@@ -33,6 +33,7 @@ class Equipamentos(Base):
     def __str__(self):
         return self.Nome
 
+
 class AbrirOrdem(models.Model):
     funcao_choices = [
         ('concluido', 'Serviço Concluido'),
@@ -134,3 +135,18 @@ class Eventos(models.Model):
     data = models.DateTimeField(auto_now=False, auto_now_add=False, null=True, blank=True)
     obs = models.TextField()
     po = models.ForeignKey(Ordem, on_delete=models.PROTECT)
+
+
+class Maquinas(Base):
+    Nome = models.ForeignKey(Equipamentos, on_delete=models.PROTECT)
+    Ordem = models.CharField(max_length=10, null=True, blank=True)
+    estado_choices = [
+        ('Parado', 'Equipamento Parado'),
+        ('Funcionando', 'Equipamento Funcionando'),
+        ('Erro', 'Erro na Leitura'),
+    ]
+    Estado = models.CharField(
+        verbose_name='Estado do Equipamento', 
+        max_length=25,
+        choices=estado_choices,
+    )

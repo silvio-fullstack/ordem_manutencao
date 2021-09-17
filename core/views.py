@@ -10,6 +10,7 @@ from .models import (
     Almoxarifado,
     Book,
     Eventos,
+    Maquinas,
 )
 from .forms import (
     ManutencaoForm, 
@@ -21,6 +22,7 @@ from .forms import (
     AlmoxarifadoForm, 
     AbrirOrdemForm,
     OrdemAlterar,
+    MaquinaForm,
 )
 from datetime import datetime
 from django.contrib import messages
@@ -190,6 +192,63 @@ def equipamentos_delete(request, id):
         return redirect('equipamento')
     else:
         return render(request, 'ordem/equipamento_delete.html', {'dados': dados})
+
+# --- VIEW ----- Maquinários -------------------------------------------------
+
+@login_required
+def maquinas(request):
+    dados = Maquinas.objects.all()
+    context = {
+        'dados': dados,
+
+    }
+    return render(request, 'ordem/maquinas.html', context)
+
+
+@login_required
+def maquinas_add(request):
+    if request.method == 'POST':
+        form = MaquinaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('maquinas')
+    form = MaquinaForm()
+
+    context = {
+        'form': form,
+
+    }
+    return render(request, 'ordem/maquinas_add.html', context)
+
+@login_required
+def maquinas_update(request, id):
+    dados = Maquinas.objects.get(id=id)
+    form = MaquinaForm(request.POST or None, instance=dados)
+
+    context = {
+        'dados': dados,
+        'form': form,
+
+    }
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('maquinas')
+    else:
+        return render(request, 'ordem/maquinas_update.html', context)
+
+@login_required
+def maquinas_delete(request, id):
+    dados = Maquinas.objects.get(id=id)
+
+
+    if request.method == 'POST':
+        dados.delete()
+        return redirect('maquinas')
+    else:
+        return render(request, 'ordem/maquinas_delete.html', {'dados': dados})
+
 
 #--- VIEWS ---- ORDEM DE SERVICO ----------------------------------------------
 
